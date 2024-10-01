@@ -13,7 +13,7 @@ import OrnFlowerTopLeftImg from "./assets/orn-flower-4.png";
 import OrnFlowerMiddleLeftImg from "./assets/orn-flower-20.png";
 import OrnFlowerMiddleRightImg from "./assets/orn-flower-18.png";
 import OrnFlowerBottomLeftImg from "./assets/orn-flower-21.png";
-// import OrnFlowerBottomLeft1Img from "./assets/orn-flower-26.png";
+import OrnFlowerBottomLeft1Img from "./assets/orn-flower-26.png";
 import OrnFlowerBottomRightImg from "./assets/orn-flower-22.png";
 import OrnFlowerBottomRight2Img from "./assets/orn-flower-27.png";
 
@@ -54,6 +54,9 @@ import OrnEventCover3Img from "./assets/orn-cover-3.png";
 import AkadImg from "./assets/akad.png";
 import ReceptionImg from "./assets/reception.png";
 
+import Backsound from "./assets/backsound.mp3";
+import Music from "./assets/music.png";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
@@ -64,10 +67,12 @@ import { useSearchParams } from "react-router-dom";
 const App = () => {
   const [params] = useSearchParams();
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const [page, setPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [weddingWish, setweddingWish] = useState<IWeddingWish>({
     id: "",
-    name: "",
+    name: params.get("guest")!,
     created_at: "",
     wish: "",
   });
@@ -109,12 +114,14 @@ const App = () => {
         }
       `;
     try {
+      setIsLoading(true);
       const data = await axios.post(
         API_URL,
         { query: API_QUERY },
         { headers: API_HEADERS }
       );
       const result = data.data.data.harinanbahagia_wedding_wish;
+      setIsLoading(false);
       setListWeddingWish(result);
     } catch (error) {
       console.log(error);
@@ -144,18 +151,20 @@ const App = () => {
       }
       `;
     try {
+      setIsLoading(true);
       const data = await axios.post(
         API_URL,
         { query: API_QUERY },
         { headers: API_HEADERS }
       );
+      setIsLoading(false);
       const result =
         data.data.data.insert_harinanbahagia_wedding_wish.affected_rows;
       if (result > 0) {
         setweddingWish({
           id: "",
           created_at: "",
-          name: "",
+          name: params.get("guest")!,
           wish: "",
         });
         fetchWeddingWish();
@@ -170,6 +179,17 @@ const App = () => {
   const handleOnClickClipboard = (acc_num: string) => {
     var copyText = document.getElementById(acc_num);
     navigator.clipboard.writeText(copyText!.innerText);
+  };
+  const handleOnClickOpenInvitation = () => {
+    setIsInvitationOpen(!isInvitationOpen);
+    const audio: any = document.getElementById("audio");
+    setIsMuted(!isMuted);
+    audio.play();
+  };
+  const handleOnClickMusic = () => {
+    const audio: any = document.getElementById("audio");
+    setIsMuted(!isMuted);
+    audio.muted = isMuted;
   };
 
   // Component Render
@@ -244,6 +264,45 @@ const App = () => {
 
   return (
     <div className="relative">
+      {isLoading && (
+        <div className="w-screen h-screen bg-mycolor fixed left-0 top-0 z-[999]">
+          <div className="inline-flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[999 items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-lg text-white bg-[#89565C] transition ease-in-out duration-150">
+            <svg
+              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            Processing...
+          </div>
+        </div>
+      )}
+
+      <audio id="audio" loop>
+        <source src={Backsound} type="audio/mpeg" />
+      </audio>
+      <img
+        src={Music}
+        alt=""
+        className={`w-16 left-2 bottom-2 fixed z-50  ${
+          isMuted && "animate-spin-slow"
+        }`}
+        onClick={() => handleOnClickMusic()}
+      />
       <section
         className={`overflow-hidden relative z-10 h-[calc(100dvh)] w-screen bg-[url('./assets/bg-cover-mobile.png')] bg-cover ${
           isInvitationOpen && "-translate-y-full"
@@ -319,14 +378,14 @@ const App = () => {
             data-aos-duration="2000"
             className="text-[#89565C] font-bold text-2xl font-great-vibes px-2 py-1 rounded-lg mt-2 capitalize"
           >
-            {params.get("target")}
+            {params.get("guest")}
           </span>
           <button
             data-aos="fade-up"
             data-aos-delay="3000"
             data-aos-duration="2000"
             className="px-4 py-1 bg-[#89565C] text-white text-sm font-lato mt-4 rounded-full flex justify-center items-center gap-1"
-            onClick={() => setIsInvitationOpen(!isInvitationOpen)}
+            onClick={() => handleOnClickOpenInvitation()}
           >
             Open Invitation
           </button>
@@ -604,7 +663,7 @@ const App = () => {
                   data-aos="zoom-in"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  src={OrnFlowerBottomLeftImg2}
+                  src={OrnFlowerBottomLeft1Img}
                   alt=""
                   className="absolute -right-4 -bottom-8 h-24"
                 />
@@ -644,7 +703,6 @@ const App = () => {
                 className="font-great-vibes text-4xl text-center font-medium tracking-[0.1em] mb-8"
                 data-aos="fade-up"
                 data-aos-duration="2000"
-                data-aos-once="true"
               >
                 Save The Date
               </h2>
@@ -655,7 +713,6 @@ const App = () => {
                   className="w-72"
                   data-aos="fade-up"
                   data-aos-duration="2000"
-                  data-aos-once="true"
                 />
                 <img
                   src={FrameOrnLeftImg}
@@ -664,7 +721,6 @@ const App = () => {
                   data-aos="fade-up"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  data-aos-once="true"
                 />
                 <img
                   src={FrameOrnRightImg}
@@ -673,13 +729,11 @@ const App = () => {
                   data-aos="fade-up"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  data-aos-once="true"
                 />
                 <h1
                   className="font-great-vibes text-[26px] w-full text-center font-medium tracking-[0.05em] mb-8 absolute top-[72px] left-0 leading-5"
                   data-aos="fade-up"
                   data-aos-duration="2000"
-                  data-aos-once="true"
                 >
                   13<sup>rd</sup> <br />
                   October 2024
@@ -692,22 +746,21 @@ const App = () => {
             className={`min-h-[calc(100dvh)] w-screen bg-[#EAE2DC] py-4 flex justify-start flex-col `}
           >
             <div className="px-4 pt-2 pb-16 flex items-center flex-col text-[#89565C] ">
-              <p className="text-center text-sm leading-4  mb-4">
+              <p
+                className="text-center text-sm leading-4  mb-4"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
                 With the joy of our hearts, we cordially invite you to our
                 special day. Your presence will enhance the happiness to us
               </p>
-              <h3
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                data-aos-once="true"
-              >
+              <h3 data-aos="fade-up" data-aos-duration="2000">
                 Sunday
               </h3>
               <h2
                 className="font-great-vibes text-4xl text-center font-medium tracking-[0.05em]"
                 data-aos="fade-up"
                 data-aos-duration="2000"
-                data-aos-once="true"
               >
                 October, 13<sup>rd</sup> 2024
               </h2>
@@ -1082,16 +1135,22 @@ const App = () => {
               >
                 Wedding Wish
               </h2>
-              <div className="flex flex-col w-full font-news mb-4">
+              <div
+                className="flex flex-col w-full font-news mb-4"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-once="true"
+              >
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="rounded px-2 py-1"
+                  className="rounded px-2 py-1 disabled:bg-[#fde5e8] capitalize"
                   autoComplete="off"
                   value={weddingWish?.name}
                   onChange={(e) => handleOnChange(e)}
+                  disabled
                 />
               </div>
               <div className="flex flex-col w-full font-news mb-4">
@@ -1110,7 +1169,12 @@ const App = () => {
               >
                 Send
               </button>
-              <div className="bg-white w-full rounded-md p-4 mt-16 font-news">
+              <div
+                className="bg-white w-full rounded-md p-4 mt-16 font-news"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-once="true"
+              >
                 {listWeddingWish.map((wish: IWeddingWish) => (
                   <div key={wish.id} className="py-2">
                     <p className="text-left capitalize">{wish?.name}</p>
@@ -1126,7 +1190,12 @@ const App = () => {
                   </div>
                 ))}
               </div>
-              <div className="flex justify-center items-center gap-4 mt-8 font-news text-xs">
+              <div
+                className="flex justify-center items-center gap-4 mt-8 font-news text-xs"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-once="true"
+              >
                 <button
                   className="bg-[#89565C] px-4 py-0.5 text-[#F9EACA] rounded disabled:bg-[#cda9ad]"
                   disabled={page === 0}

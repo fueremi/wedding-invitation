@@ -31,6 +31,7 @@ export default {
         "waving-flower-left": "wave-left 5s ease-in-out -3s infinite alternate",
         "waving-flower-right":
           "wave-right 5s ease-in-out -3s infinite alternate",
+        "spin-slow": "spin 10s linear infinite forwards",
       },
     },
   },
