@@ -292,7 +292,7 @@ const App = () => {
                 cy="12"
                 r="10"
                 stroke="currentColor"
-                stroke-width="4"
+                strokeWidth="4"
               ></circle>
               <path
                 className="opacity-75"
@@ -1320,15 +1320,7 @@ const App = () => {
                 <span className="-ml-4 mt-5">R</span>
               </div>
               <div
-                className="font-news text-sm"
-                data-aos="fade-down"
-                data-aos-duration="3000"
-                data-aos-once="true"
-              >
-                Wedding Invitation
-              </div>
-              <div
-                className="mt-3 font-parisienne text-4xl tracking-[0.1em]"
+                className="mt-3 font-parisienne text-4xl tracking-[0.06em]"
                 data-aos="fade-down"
                 data-aos-duration="3000"
                 data-aos-once="true"
@@ -1342,14 +1334,6 @@ const App = () => {
                 data-aos-once="true"
               >
                 October, 13<sup>rd</sup> 2024
-              </div>
-              <div
-                className="mt-4 font-news text-xs"
-                data-aos="fade-down"
-                data-aos-duration="3000"
-                data-aos-once="true"
-              >
-                You Are Invited!
               </div>
 
               <hr
