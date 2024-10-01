@@ -678,7 +678,7 @@ const App = () => {
                   data-aos-delay="1000"
                   src={OrnFlowerBottomLeft1Img}
                   alt=""
-                  className="absolute -right-4 -bottom-8 h-24"
+                  className="absolute -right-2 -bottom-8 h-24"
                 />
                 <img
                   data-aos="zoom-in"
@@ -686,7 +686,7 @@ const App = () => {
                   data-aos-delay="1000"
                   src={OrnFlowerBottomRight2Img}
                   alt=""
-                  className="absolute -left-8 -bottom-8 h-24"
+                  className="absolute -left-4 -bottom-8 h-20"
                 />
               </div>
               <div className="mt-12">
