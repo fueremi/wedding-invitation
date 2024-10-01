@@ -378,7 +378,9 @@ const App = () => {
             data-aos-duration="2000"
             className="text-[#89565C] font-bold text-2xl font-great-vibes px-2 py-1 rounded-lg mt-2 capitalize"
           >
-            {params.get("guest")}
+            {params.get("guest")
+              ? params.get("guest")!.replace(/\;/g, " ").replace(/\=/g, "&")
+              : ""}
           </span>
           <button
             data-aos="fade-up"
