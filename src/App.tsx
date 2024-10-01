@@ -1328,7 +1328,7 @@ const App = () => {
                 Wedding Invitation
               </div>
               <div
-                className="mt-3 font-great-vibes text-4xl tracking-[0.1em]"
+                className="mt-3 font-parisienne text-4xl tracking-[0.1em]"
                 data-aos="fade-down"
                 data-aos-duration="3000"
                 data-aos-once="true"
