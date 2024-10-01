@@ -81,6 +81,8 @@ const App = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPreview, setIsPreview] = useState(false);
+  const [currentPhoto, setCurrentPhoto] = useState("");
   const [weddingWish, setweddingWish] = useState<IWeddingWish>({
     id: "",
     name: params.get("guest")
@@ -204,6 +206,14 @@ const App = () => {
     setIsMuted(!isMuted);
     audio.muted = isMuted;
   };
+  const handleOnClickPhoto = (photo: any) => {
+    setCurrentPhoto(photo);
+    setIsPreview(true);
+  };
+  const handleOnClickClosePhoto = () => {
+    setCurrentPhoto("");
+    setIsPreview(false);
+  };
 
   // Component Render
   const CountdownRenderer = ({
@@ -302,6 +312,15 @@ const App = () => {
             </svg>
             Processing...
           </div>
+        </div>
+      )}
+
+      {isPreview && (
+        <div
+          className="w-screen h-screen bg-mycolor fixed left-0 top-0 z-[999] px-1"
+          onClick={() => handleOnClickClosePhoto()}
+        >
+          <img src={currentPhoto} className="h-full object-contain" alt="" />
         </div>
       )}
 
@@ -405,7 +424,7 @@ const App = () => {
         </div>
       </section>
       {isInvitationOpen && (
-        <div className="overflow-hidden">
+        <div className={`overflow-hidden`}>
           <section
             className={`min-h-[calc(100dvh)] bg-[#EAE2DC] w-screen ${
               isInvitationOpen && "absolute top-0 left-0"
@@ -924,6 +943,7 @@ const App = () => {
                     src={Lebar6Img}
                     alt=""
                     className="w-full h-full object-cover object-center"
+                    onClick={() => handleOnClickPhoto(Lebar6Img)}
                   />
                 </div>
               </div>
@@ -937,6 +957,7 @@ const App = () => {
                     src={Lebar7Img}
                     alt=""
                     className="w-full h-full object-cover object-center"
+                    onClick={() => handleOnClickPhoto(Lebar7Img)}
                   />
                 </div>
                 <div
@@ -949,6 +970,7 @@ const App = () => {
                     src={Lebar1Img}
                     alt=""
                     className="w-full h-full object-cover object-center"
+                    onClick={() => handleOnClickPhoto(Lebar1Img)}
                   />
                 </div>
               </div>
@@ -963,6 +985,7 @@ const App = () => {
                     src={Lebar4Img}
                     alt=""
                     className="w-full h-full object-cover"
+                    onClick={() => handleOnClickPhoto(Lebar4Img)}
                   />
                 </div>
                 <div
@@ -975,6 +998,7 @@ const App = () => {
                     src={Lebar8Img}
                     alt=""
                     className="w-full h-full object-cover"
+                    onClick={() => handleOnClickPhoto(Lebar8Img)}
                   />
                 </div>
                 <div
@@ -986,6 +1010,7 @@ const App = () => {
                     src={Lebar5Img}
                     alt=""
                     className="w-full h-full object-cover"
+                    onClick={() => handleOnClickPhoto(Lebar5Img)}
                   />
                 </div>
               </div>
@@ -999,6 +1024,7 @@ const App = () => {
                     src={Lebar2Img}
                     alt=""
                     className="w-full h-full object-cover object-center"
+                    onClick={() => handleOnClickPhoto(Lebar2Img)}
                   />
                 </div>
                 <div
@@ -1011,6 +1037,7 @@ const App = () => {
                     src={Lebar9Img}
                     alt=""
                     className="w-full h-full object-cover object-center"
+                    onClick={() => handleOnClickPhoto(Lebar9Img)}
                   />
                 </div>
               </div>
@@ -1024,6 +1051,7 @@ const App = () => {
                     src={Lebar3Img}
                     alt=""
                     className="w-full h-full object-cover object-center"
+                    onClick={() => handleOnClickPhoto(Lebar3Img)}
                   />
                 </div>
               </div>
