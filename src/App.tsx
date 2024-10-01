@@ -1066,14 +1066,14 @@ const App = () => {
                 data-aos-duration="2000"
                 id="acc_num1"
               >
-                1996101804
+                2940617378
               </div>
               <div
                 className="font-news text-center -mt-1"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
-                an. Nadiya`
+                an. Nadiya
               </div>
               <button
                 className="font-news text-lg mt-2 border-b-2 border-[#89565C] pb-1"
