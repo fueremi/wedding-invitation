@@ -54,6 +54,17 @@ import OrnEventCover3Img from "./assets/orn-cover-3.png";
 import AkadImg from "./assets/akad.png";
 import ReceptionImg from "./assets/reception.png";
 
+// Footer
+import OrnFooter1 from "./assets/orn-footer-1.png";
+import OrnFooter2 from "./assets/orn-footer-2.png";
+import OrnFooter3 from "./assets/orn-footer-3-min.png";
+import OrnFooter4 from "./assets/orn-footer-4.png";
+import OrnFooter5 from "./assets/orn-footer-5.png";
+import OrnFooter6 from "./assets/orn-footer-6.png";
+import OrnFooter7 from "./assets/orn-footer-7.png";
+import OrnFooter9 from "./assets/orn-footer-9.png";
+import OrnFooter10 from "./assets/orn-footer-10.png";
+
 import Backsound from "./assets/backsound.mp3";
 import Music from "./assets/music.png";
 
@@ -1213,6 +1224,140 @@ const App = () => {
                   Next
                 </button>
               </div>
+            </div>
+          </section>
+          <section
+            className={`min-h-[calc(60dvh)] w-screen bg-[#89565C] px-4 py-8 flex justify-start flex-col overflow-hidden relative`}
+          >
+            <img
+              src={OrnFooter4}
+              className="absolute bottom-0 left-32 w-32"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter1}
+              className="absolute bottom-32 -left-12 w-24"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter2}
+              className="absolute bottom-8 -left-10 w-28"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter3}
+              className="absolute -bottom-4 left-0 w-36"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter7}
+              className="absolute -bottom-8 -right-12 w-32"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter5}
+              className="absolute -bottom-4 right-16 w-32"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter6}
+              className="absolute -bottom-8 -rotate-[25deg] right-4 w-36"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter10}
+              className="absolute bottom-24 -right-16 w-32"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter9}
+              className="absolute bottom-12 -right-16 w-24"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter1}
+              className="absolute -bottom-20 right-0 w-24"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <div className="absolute left-1/2 top-1/3 mt-8 -translate-x-1/2 -translate-y-1/2 text-center text-[#F9EACA] w-full">
+              <div
+                className="text-4xl font-parisienne flex justify-center font-bold text-center"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              >
+                <span>N</span>
+                <span className="-ml-4 mt-5">R</span>
+              </div>
+              <div
+                className="font-news text-sm"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              >
+                Wedding Invitation
+              </div>
+              <div
+                className="mt-3 font-great-vibes text-4xl tracking-[0.1em]"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              >
+                Nadiya & Rian
+              </div>
+              <div
+                className="mt-6 font-news text-lg"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              >
+                October, 13<sup>rd</sup> 2024
+              </div>
+              <div
+                className="mt-4 font-news text-xs"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              >
+                You Are Invited!
+              </div>
+
+              <hr
+                className="border-[#F9EACA] w-20 mx-auto mt-4"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              />
             </div>
           </section>
         </div>
