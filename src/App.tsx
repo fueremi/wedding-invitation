@@ -74,6 +74,7 @@ import { useEffect, useState } from "react";
 import CountDown from "react-countdown";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const App = () => {
   const [params] = useSearchParams();
@@ -93,6 +94,20 @@ const App = () => {
   });
   const [listWeddingWish, setListWeddingWish] = useState<IWeddingWish[]>([]);
   const dday = new Date(2024, 9, 13, 8, 0, 0, 0);
+
+  // Mixins
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    },
+  });
 
   interface IWeddingWish {
     id: string;
@@ -194,6 +209,12 @@ const App = () => {
   const handleOnClickClipboard = (acc_num: string) => {
     var copyText = document.getElementById(acc_num);
     navigator.clipboard.writeText(copyText!.innerText);
+    Toast.fire({
+      icon: "success",
+      title: "Account number copied to Clipboard",
+
+      position: "bottom",
+    });
   };
   const handleOnClickOpenInvitation = () => {
     setIsInvitationOpen(!isInvitationOpen);
@@ -430,7 +451,7 @@ const App = () => {
               isInvitationOpen && "absolute top-0 left-0"
             }`}
           >
-            <div className="flex flex-col justify-center items-center h-full w-full px-4 py-8 font-bold">
+            <div className="flex flex-col justify-center items-center h-full w-full px-4 py-8">
               <div className="flex justify-center items-center gap-4">
                 <span
                   className="w-10 h-[2px] bg-[#89565C]"
@@ -438,12 +459,12 @@ const App = () => {
                   data-aos-duration="2000"
                 ></span>
                 <div
-                  className="text-4xl font-parisienne flex font-bold text-[#89565C]"
+                  className="text-4xl text-[#89565C] font-apple flex justify-center"
                   data-aos="fade-down"
                   data-aos-duration="3000"
                 >
                   <span>N</span>
-                  <span className="-ml-4 mt-5">R</span>
+                  <span className="-ml-[14px] mt-3">R</span>
                 </div>
                 <span
                   className="w-10 h-[2px] bg-[#89565C]"
@@ -553,8 +574,88 @@ const App = () => {
             </div>
           </section>
           <section
-            className={`min-h-[calc(100dvh)] w-screen bg-[url('./assets/bg-quotes.png')] bg-cover py-8 flex justify-center flex-col `}
+            className={`min-h-[calc(75dvh)] w-screen bg-[url('./assets/bg-quotes.png')] bg-cover py-8 flex justify-center flex-col relative overflow-hidden`}
           >
+            <img
+              src={OrnFooter4}
+              className="absolute bottom-0 left-32 w-32"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            {/* <img
+              src={OrnFooter1}
+              className="absolute bottom-32 -left-12 w-24"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            /> */}
+            {/* <img
+              src={OrnFooter2}
+              className="absolute bottom-8 -left-10 w-28"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            /> */}
+            <img
+              src={OrnFooter3}
+              className="absolute -bottom-4 left-0 w-36"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            <img
+              src={OrnFooter7}
+              className="absolute -bottom-8 -right-12 w-32"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            {/* <img
+              src={OrnFooter5}
+              className="absolute -bottom-4 right-16 w-32"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            /> */}
+            <img
+              src={OrnFooter6}
+              className="absolute -bottom-8 -rotate-[25deg] right-4 w-36"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
+            {/* <img
+              src={OrnFooter10}
+              className="absolute bottom-24 -right-16 w-32"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            /> */}
+            {/* <img
+              src={OrnFooter9}
+              className="absolute bottom-12 -right-16 w-24"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            /> */}
+            <img
+              src={OrnFooter1}
+              className="absolute -bottom-20 right-0 w-24"
+              alt=""
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-once="true"
+            />
             <h1
               className="text-xl text-[#89565C] font-bold mt-12 text-center"
               data-aos="fade-up"
@@ -1218,11 +1319,13 @@ const App = () => {
               >
                 {listWeddingWish.map((wish: IWeddingWish) => (
                   <div key={wish.id} className="py-2">
-                    <p className="text-left capitalize">{wish?.name}</p>
-                    <p className="text-left text-xs -mt-1">
+                    <p className="text-left font-bold capitalize">
+                      {wish?.name}
+                    </p>
+                    <p className="text-left text-xs -mt-1 text-black">
                       {formatDate(wish.created_at)}
                     </p>
-                    <p className="leading-4 mt-2 text-xs text-justify normal-case first-letter:uppercase">
+                    <p className="leading-4 mt-2 text-xs text-justify normal-case first-letter:uppercase text-black">
                       {wish?.wish}
                     </p>
                     <div className="flex justify-center items-center">
@@ -1255,7 +1358,7 @@ const App = () => {
             </div>
           </section>
           <section
-            className={`min-h-[calc(60dvh)] w-screen bg-[#89565C] px-4 py-8 flex justify-start flex-col overflow-hidden relative`}
+            className={`min-h-[calc(60dvh)] w-screen bg-[url('./assets/bg-quotes.png')] bg-cover px-4 py-8 flex justify-start flex-col overflow-hidden relative`}
           >
             <img
               src={OrnFooter4}
@@ -1337,8 +1440,8 @@ const App = () => {
               data-aos-duration="2000"
               data-aos-once="true"
             />
-            <div className="absolute left-1/2 top-1/3 mt-8 -translate-x-1/2 -translate-y-1/2 text-center text-[#F9EACA] w-full">
-              <div
+            <div className="absolute left-1/2 top-1/3 mt-12 -translate-x-1/2 -translate-y-1/2 text-center text-[#89565C] w-full">
+              {/* <div
                 className="mt-3 font-parisienne text-4xl tracking-[0.06em]"
                 data-aos="fade-down"
                 data-aos-duration="3000"
@@ -1360,7 +1463,24 @@ const App = () => {
                 data-aos="fade-down"
                 data-aos-duration="3000"
                 data-aos-once="true"
-              />
+              /> */}
+              <div
+                className="text-[72px] font-apple flex justify-center"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              >
+                <span>N</span>
+                <span className="-ml-[28px] mt-6">R</span>
+              </div>
+              <div
+                className="mt-2 font-news text-2xl"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              >
+                #haRINAnbahagia
+              </div>
             </div>
           </section>
         </div>
