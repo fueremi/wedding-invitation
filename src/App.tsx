@@ -72,7 +72,9 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [weddingWish, setweddingWish] = useState<IWeddingWish>({
     id: "",
-    name: params.get("guest")!,
+    name: params.get("guest")
+      ? params.get("guest")!.replace(/\;/g, " ").replace(/\=/g, "&")
+      : "",
     created_at: "",
     wish: "",
   });
@@ -378,9 +380,7 @@ const App = () => {
             data-aos-duration="2000"
             className="text-[#89565C] font-bold text-2xl font-great-vibes px-2 py-1 rounded-lg mt-2 capitalize"
           >
-            {params.get("guest")
-              ? params.get("guest")!.replace(/\;/g, " ").replace(/\=/g, "&")
-              : ""}
+            {weddingWish.name}
           </span>
           <button
             data-aos="fade-up"
