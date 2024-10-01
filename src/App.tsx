@@ -1311,15 +1311,6 @@ const App = () => {
             />
             <div className="absolute left-1/2 top-1/3 mt-8 -translate-x-1/2 -translate-y-1/2 text-center text-[#F9EACA] w-full">
               <div
-                className="text-4xl font-parisienne flex justify-center font-bold text-center"
-                data-aos="fade-down"
-                data-aos-duration="3000"
-                data-aos-once="true"
-              >
-                <span>N</span>
-                <span className="-ml-4 mt-5">R</span>
-              </div>
-              <div
                 className="mt-3 font-parisienne text-4xl tracking-[0.06em]"
                 data-aos="fade-down"
                 data-aos-duration="3000"
