@@ -1312,51 +1312,53 @@ const App = () => {
                 Send
               </button>
               {listWeddingWish.length > 0 && (
-                <div
-                  className="bg-white w-full rounded-md p-4 mt-16 font-news"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  data-aos-once="true"
-                >
-                  {listWeddingWish.map((wish: IWeddingWish) => (
-                    <div key={wish.id} className="py-2">
-                      <p className="text-left font-bold capitalize">
-                        {wish?.name}
-                      </p>
-                      <p className="text-left text-xs -mt-1 text-black">
-                        {formatDate(wish.created_at)}
-                      </p>
-                      <p className="leading-4 mt-2 text-xs text-justify normal-case first-letter:uppercase text-black">
-                        {wish?.wish}
-                      </p>
-                      <div className="flex justify-center items-center">
-                        <hr className="mt-2 w-12 border-[#89565C]" />
+                <>
+                  <div
+                    className="bg-white w-full rounded-md p-4 mt-16 font-news"
+                    data-aos="fade-up"
+                    data-aos-duration="2000"
+                    data-aos-once="true"
+                  >
+                    {listWeddingWish.map((wish: IWeddingWish) => (
+                      <div key={wish.id} className="py-2">
+                        <p className="text-left font-bold capitalize">
+                          {wish?.name}
+                        </p>
+                        <p className="text-left text-xs -mt-1 text-black">
+                          {formatDate(wish.created_at)}
+                        </p>
+                        <p className="leading-4 mt-2 text-xs text-justify normal-case first-letter:uppercase text-black">
+                          {wish?.wish}
+                        </p>
+                        <div className="flex justify-center items-center">
+                          <hr className="mt-2 w-12 border-[#89565C]" />
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                  <div
+                    className="flex justify-center items-center gap-4 mt-8 font-news text-xs"
+                    data-aos="fade-up"
+                    data-aos-duration="2000"
+                    data-aos-once="true"
+                  >
+                    <button
+                      className="bg-[#89565C] px-4 py-0.5 text-[#F9EACA] rounded disabled:bg-[#cda9ad]"
+                      disabled={page === 0}
+                      onClick={() => setPage(page - 5)}
+                    >
+                      Prev
+                    </button>
+                    <button
+                      className="bg-[#89565C] px-4 py-0.5 text-[#F9EACA] rounded disabled:bg-[#cda9ad]"
+                      disabled={page + 5 > listWeddingWish.length}
+                      onClick={() => setPage(page + 5)}
+                    >
+                      Next
+                    </button>
+                  </div>
+                </>
               )}
-              <div
-                className="flex justify-center items-center gap-4 mt-8 font-news text-xs"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                data-aos-once="true"
-              >
-                <button
-                  className="bg-[#89565C] px-4 py-0.5 text-[#F9EACA] rounded disabled:bg-[#cda9ad]"
-                  disabled={page === 0}
-                  onClick={() => setPage(page - 5)}
-                >
-                  Prev
-                </button>
-                <button
-                  className="bg-[#89565C] px-4 py-0.5 text-[#F9EACA] rounded disabled:bg-[#cda9ad]"
-                  disabled={page + 5 > listWeddingWish.length}
-                  onClick={() => setPage(page + 5)}
-                >
-                  Next
-                </button>
-              </div>
             </div>
           </section>
           <section
