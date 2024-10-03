@@ -429,7 +429,7 @@ const App = () => {
             data-aos="fade-up"
             data-aos-delay="2500"
             data-aos-duration="2000"
-            className="text-[#89565C] font-bold text-2xl font-great-vibes px-2 py-1 rounded-lg mt-2 capitalize"
+            className="text-[#89565C] font-bold text-2xl font-great-vibes px-2 py-1 rounded-lg mt-2 capitalize text-center w-80"
           >
             {weddingWish.name}
           </span>
