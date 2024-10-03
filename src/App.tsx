@@ -1296,7 +1296,7 @@ const App = () => {
                 />
               </div>
               <div className="flex flex-col w-full font-news mb-4">
-                <label htmlFor="wish">Wish</label>
+                <label htmlFor="wish">Wish / Doa</label>
                 <textarea
                   id="wish"
                   name="wish"
