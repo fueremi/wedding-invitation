@@ -697,7 +697,7 @@ const App = () => {
                 The Wedding Of
               </h2>
               <h3
-                className="text-sm mt-4"
+                className="text-sm mt-4 w-full text-center"
                 data-aos="fade-up"
                 data-aos-duration="2000"
                 data-aos-once="true"
@@ -761,7 +761,7 @@ const App = () => {
                   Nadiya S.T.
                 </h1>
                 <p
-                  className="mt-4 text-sm text-center"
+                  className="mt-4 text-sm text-center w-full"
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
@@ -818,7 +818,7 @@ const App = () => {
                   Rian Oktio M.P. S.Kom.
                 </h1>
                 <p
-                  className="mt-4 text-sm text-center"
+                  className="mt-4 text-sm text-center w-full"
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
