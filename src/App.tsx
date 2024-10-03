@@ -174,8 +174,8 @@ const App = () => {
         "A4xxh5EYO5EfrydYORUlobfBSeJVGyds3RFds5d6Km7k0vghrtK3vNLaU3NSa3VX",
     };
     const API_QUERY = `
-      mutation MyMutation {
-        insert_harinanbahagia_wedding_wish(objects: {name: "${weddingWish.name}", wish: "${weddingWish.wish}"}) {
+      mutation MyMutation($input: String!) {
+        insert_harinanbahagia_wedding_wish(objects: {name: "${weddingWish.name}", wish: $input}) {
           affected_rows
         }
       }
@@ -184,7 +184,7 @@ const App = () => {
       setIsLoading(true);
       const data = await axios.post(
         API_URL,
-        { query: API_QUERY },
+        { query: API_QUERY, variables: { input: weddingWish.wish } },
         { headers: API_HEADERS }
       );
       setIsLoading(false);
@@ -1327,7 +1327,7 @@ const App = () => {
                         <p className="text-left text-xs -mt-1 text-black">
                           {formatDate(wish.created_at)}
                         </p>
-                        <p className="leading-4 mt-2 text-xs text-justify normal-case first-letter:uppercase text-black">
+                        <p className="leading-4 mt-2 text-xs text-justify normal-case first-letter:uppercase text-blac whitespace-pre-line">
                           {wish?.wish}
                         </p>
                         <div className="flex justify-center items-center">
