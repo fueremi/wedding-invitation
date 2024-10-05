@@ -81,6 +81,7 @@ const App = () => {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [page, setPage] = useState(0);
+  const [weddingWishLength, setWeddingWishLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isPreview, setIsPreview] = useState(false);
   const [currentPhoto, setCurrentPhoto] = useState("");
@@ -158,6 +159,38 @@ const App = () => {
       return;
     }
   };
+  const fetchWeddingWishLength = async () => {
+    const API_URL = "https://fueremi.hasura.app/v1/graphql";
+    const API_HEADERS = {
+      "Content-Type": "application/json",
+      "x-hasura-admin-secret":
+        "A4xxh5EYO5EfrydYORUlobfBSeJVGyds3RFds5d6Km7k0vghrtK3vNLaU3NSa3VX",
+    };
+    const API_QUERY = `
+      query MyQuery {
+          harinanbahagia_wedding_wish_aggregate {
+            aggregate {
+              count
+          }
+        }
+      }
+      `;
+    try {
+      setIsLoading(true);
+      const data = await axios.post(
+        API_URL,
+        { query: API_QUERY },
+        { headers: API_HEADERS }
+      );
+      const result =
+        data.data.data.harinanbahagia_wedding_wish_aggregate.aggregate.count;
+      setIsLoading(false);
+      setWeddingWishLength(result);
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
   const handleOnChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -198,6 +231,7 @@ const App = () => {
           wish: "",
         });
         fetchWeddingWish();
+        fetchWeddingWishLength();
       } else {
         console.log(data.data.data);
       }
@@ -303,6 +337,7 @@ const App = () => {
 
   useEffect(() => {
     fetchWeddingWish();
+    fetchWeddingWishLength();
     AOS.init();
   }, [page]);
 
@@ -1226,7 +1261,7 @@ const App = () => {
                 data-aos-duration="2000"
                 id="acc_num2"
               >
-                1996101803
+                1996101804
               </div>
               <div
                 className="font-news text-center -mt-1"
@@ -1351,7 +1386,7 @@ const App = () => {
                     </button>
                     <button
                       className="bg-[#89565C] px-4 py-0.5 text-[#F9EACA] rounded disabled:bg-[#cda9ad]"
-                      disabled={page + 5 > listWeddingWish.length}
+                      disabled={page + 5 > weddingWishLength}
                       onClick={() => setPage(page + 5)}
                     >
                       Next
