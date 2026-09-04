@@ -1,72 +1,30 @@
-// Image on Cover
-import OrnTreeImg from "./assets/orn-tree.png";
-import OrnFlowerLeftImg from "./assets/orn-flower.png";
-import OrnFlowerLeftColorImg from "./assets/orn-flower-7.png";
-import OrnFlowerRightImg from "./assets/orn-flower-12.png";
-import OrnFlowerRightColorImg from "./assets/orn-flower-9.png";
-
 // Image on first page
 import FrameImg from "./assets/frame.png";
-import CoverImg from "./assets/cover.jpeg";
-import OrnFlowerTopRightImg from "./assets/orn-flower-19.png";
-import OrnFlowerTopLeftImg from "./assets/orn-flower-4.png";
-import OrnFlowerMiddleLeftImg from "./assets/orn-flower-20.png";
-import OrnFlowerMiddleRightImg from "./assets/orn-flower-18.png";
-import OrnFlowerBottomLeftImg from "./assets/orn-flower-21.png";
-import OrnFlowerBottomLeft1Img from "./assets/orn-flower-26.png";
-import OrnFlowerBottomRightImg from "./assets/orn-flower-22.png";
-import OrnFlowerBottomRight2Img from "./assets/orn-flower-27.png";
-
-// Image for catin
-import NadiyaImg from "./assets/nadiya.jpg";
-import RianImg from "./assets/rian.jpg";
-import OrnFlowerBottomLeftImg2 from "./assets/orn-flower-23.png";
-import OrnFlowerMiddleLeftImg2 from "./assets/orn-flower-25.png";
-
-// Image for Save the Date
-import FrameDateImg from "./assets/framedate.png";
-import FrameOrnLeftImg from "./assets/orn-save-date-1-left.png";
-import FrameOrnRightImg from "./assets/orn-save-date-1-right.png";
-
-// Image for Foto
-import Lebar1Img from "./assets/lebar1.jpg";
-import Lebar2Img from "./assets/lebar2.jpg";
-import Lebar3Img from "./assets/lebar3.jpg";
-import Lebar4Img from "./assets/lebar4.jpg";
-import Lebar5Img from "./assets/lebar5.jpg";
-import Lebar6Img from "./assets/lebar6.jpg";
-import Lebar7Img from "./assets/lebar7.jpg";
-import Lebar8Img from "./assets/lebar8.jpg";
-import Lebar9Img from "./assets/lebar9.jpg";
-
-// DDay
-import FrameTopImg from "./assets/frame-top.png";
-import FrameBottomImg from "./assets/frame-bottom.png";
-import FrameCenterImg from "./assets/frame-center.png";
-import OrnEventTLImg from "./assets/orn-event-tl-1.png";
-import OrnEventTL2Img from "./assets/orn-event-tl-2.png";
-import OrnEventTRImg from "./assets/orn-event-tr-1.png";
-import OrnEventBLImg from "./assets/orn-event-bl-1.png";
-import OrnEventBL2Img from "./assets/orn-event-bl-2.png";
-import OrnEventBRImg from "./assets/orn-event-br-1.png";
-import OrnEventCover1Img from "./assets/orn-cover-1.png";
-import OrnEventCover3Img from "./assets/orn-cover-3.png";
-import AkadImg from "./assets/akad.png";
-import ReceptionImg from "./assets/reception.png";
-
-// Footer
-import OrnFooter1 from "./assets/orn-footer-1.png";
-import OrnFooter2 from "./assets/orn-footer-2.png";
-import OrnFooter3 from "./assets/orn-footer-3-min.png";
-import OrnFooter4 from "./assets/orn-footer-4.png";
-import OrnFooter5 from "./assets/orn-footer-5.png";
-import OrnFooter6 from "./assets/orn-footer-6.png";
-import OrnFooter7 from "./assets/orn-footer-7.png";
-import OrnFooter9 from "./assets/orn-footer-9.png";
-import OrnFooter10 from "./assets/orn-footer-10.png";
 
 import Backsound from "./assets/backsound.mp3";
 import Music from "./assets/music.png";
+import PhotoCouple from "./assets/photo-couple.png";
+import PhotoBride from "./assets/photo-bride.png";
+import PhotoGroom from "./assets/photo-groom.png";
+
+import {
+  AngsoDuo,
+  ButterflyOpen,
+  ButterflySide,
+  ButterflyTiny,
+  Divider,
+  DividerCrest,
+  GoldCard,
+  LaceEdge,
+  MonogramVO,
+  PeonyBloom,
+  PeonyCorner,
+  PeonySpray,
+  PucukRebung,
+  SongketPattern,
+  SulurCorner,
+  TampukManggis,
+} from "./ornaments";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -83,18 +41,17 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [weddingWishLength, setWeddingWishLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [isPreview, setIsPreview] = useState(false);
-  const [currentPhoto, setCurrentPhoto] = useState("");
+  const guestName = params.get("guest")
+    ? params.get("guest")!.replace(/\;/g, " ").replace(/\=/g, "&")
+    : "";
   const [weddingWish, setweddingWish] = useState<IWeddingWish>({
     id: "",
-    name: params.get("guest")
-      ? params.get("guest")!.replace(/\;/g, " ").replace(/\=/g, "&")
-      : "",
+    name: guestName,
     created_at: "",
     wish: "",
   });
   const [listWeddingWish, setListWeddingWish] = useState<IWeddingWish[]>([]);
-  const dday = new Date(2024, 9, 13, 8, 0, 0, 0);
+  const dday = new Date(2026, 8, 20, 11, 0, 0, 0);
 
   // Mixins
 
@@ -119,11 +76,11 @@ const App = () => {
 
   // Function
   const formatDate = (date: string) => {
-    const format = new Date(date).toLocaleString("en-US", {
+    const format = new Date(date).toLocaleString("id-ID", {
       dateStyle: "full",
     });
-    const time = new Date(date).toLocaleTimeString("en-US", {
-      hour12: true,
+    const time = new Date(date).toLocaleTimeString("id-ID", {
+      hour12: false,
     });
     return `${format}, ${time}`;
   };
@@ -136,7 +93,7 @@ const App = () => {
     };
     const API_QUERY = `
       query MyQuery {
-          harinanbahagia_wedding_wish(offset: ${page}, limit: 5, order_by: {created_at: desc}) {
+          viraogi_wedding_wish(offset: ${page}, limit: 5, order_by: {created_at: desc}) {
             id
             name
             created_at
@@ -151,7 +108,7 @@ const App = () => {
         { query: API_QUERY },
         { headers: API_HEADERS }
       );
-      const result = data.data.data.harinanbahagia_wedding_wish;
+      const result = data.data.data.viraogi_wedding_wish;
       setIsLoading(false);
       setListWeddingWish(result);
     } catch (error) {
@@ -168,7 +125,7 @@ const App = () => {
     };
     const API_QUERY = `
       query MyQuery {
-          harinanbahagia_wedding_wish_aggregate {
+          viraogi_wedding_wish_aggregate {
             aggregate {
               count
           }
@@ -183,7 +140,7 @@ const App = () => {
         { headers: API_HEADERS }
       );
       const result =
-        data.data.data.harinanbahagia_wedding_wish_aggregate.aggregate.count;
+        data.data.data.viraogi_wedding_wish_aggregate.aggregate.count;
       setIsLoading(false);
       setWeddingWishLength(result);
     } catch (error) {
@@ -197,7 +154,7 @@ const App = () => {
     setweddingWish({ ...weddingWish, [e.target.name]: e.target.value });
   };
   const handleOnClickSend = async () => {
-    if (weddingWish.name === "" && weddingWish.wish === "") {
+    if (weddingWish.name === "" || weddingWish.wish === "") {
       return;
     }
     const API_URL = "https://fueremi.hasura.app/v1/graphql";
@@ -208,7 +165,7 @@ const App = () => {
     };
     const API_QUERY = `
       mutation MyMutation($input: String!) {
-        insert_harinanbahagia_wedding_wish(objects: {name: "${weddingWish.name}", wish: $input}) {
+        insert_viraogi_wedding_wish(objects: {name: "${weddingWish.name}", wish: $input}) {
           affected_rows
         }
       }
@@ -222,12 +179,12 @@ const App = () => {
       );
       setIsLoading(false);
       const result =
-        data.data.data.insert_harinanbahagia_wedding_wish.affected_rows;
+        data.data.data.insert_viraogi_wedding_wish.affected_rows;
       if (result > 0) {
         setweddingWish({
           id: "",
           created_at: "",
-          name: params.get("guest")!,
+          name: guestName,
           wish: "",
         });
         fetchWeddingWish();
@@ -245,7 +202,7 @@ const App = () => {
     navigator.clipboard.writeText(copyText!.innerText);
     Toast.fire({
       icon: "success",
-      title: "Account number copied to Clipboard",
+      title: "Nomor rekening berhasil disalin",
 
       position: "bottom",
     });
@@ -261,14 +218,6 @@ const App = () => {
     setIsMuted(!isMuted);
     audio.muted = isMuted;
   };
-  const handleOnClickPhoto = (photo: any) => {
-    setCurrentPhoto(photo);
-    setIsPreview(true);
-  };
-  const handleOnClickClosePhoto = () => {
-    setCurrentPhoto("");
-    setIsPreview(false);
-  };
 
   // Component Render
   const CountdownRenderer = ({
@@ -279,60 +228,36 @@ const App = () => {
     completed,
   }: any) => {
     if (completed) {
-      return <div>D-Day</div>;
-    } else {
       return (
-        <>
-          <div
-            className="absolute top-[132px] left-[72px] h-20 w-16 bg-[#89565C] rounded-lg flex flex-col justify-center"
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            data-aos-once="true"
-          >
-            <p className="text-white text-2xl text-center">{days}</p>
-            <p className="text-white text-xs text-center">Days</p>
-          </div>
-          <div
-            className="absolute top-[132px] left-[152px] h-20 w-16 bg-[#89565C] rounded-lg flex flex-col justify-center"
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            data-aos-once="true"
-          >
-            <p className="text-white text-2xl text-center">{hours}</p>
-            <p className="text-white text-xs text-center">Hours</p>
-          </div>
-          <div
-            className="absolute top-[228px] left-[72px] h-20 w-16 bg-[#89565C] rounded-lg flex flex-col justify-center"
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            data-aos-once="true"
-          >
-            <p className="text-white text-2xl text-center">{minutes}</p>
-            <p className="text-white text-xs text-center">Minutes</p>
-          </div>
-          <div
-            className="absolute top-[228px] left-[152px] h-20 w-16 bg-[#89565C] rounded-lg flex flex-col justify-center"
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            data-aos-once="true"
-          >
-            <p className="text-white text-2xl text-center">{seconds}</p>
-            <p className="text-white text-xs text-center">Seconds</p>
-          </div>
-          <a
-            className="bg-[#89565C] px-4 py-1 rounded  text-white text-xs absolute top-[21rem] left-20"
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            data-aos-once="true"
-            href="https://www.google.com/calendar/render?action=TEMPLATE&amp;text=Nadiya+%26+Rian+Wedding&amp;dates=20241013T080000/20241013T130000&amp;location=Ballroom+Raden+Intan+UIN+Raden+Intan+Lampung+%7C+Jl.+Raycudu%2C+Way+Dadi%2C+Kecamatan+Sukarame%2C+Kota+Bandar+Lampung%2C+Lampung%2C+Indonesia&amp;details=Reservation+We+will+be+more+than+just+blessed+to+have+you+with+us+celebrating+the+wedding+of+Nadiya+and+Rian.+We+request+you+to+respond+to+our+invitation+and+let+us+know+%7C+Nadiya+%26+Rian+Wedding+%7C+Sunday%2C+October+13rd+2024"
-            target="_blank"
-            rel="nofollow"
-          >
-            Add To Calender
-          </a>
-        </>
+        <div className="text-cream font-cinzel text-2xl text-center">
+          Hari Bahagia Telah Tiba
+        </div>
       );
     }
+    const items: [number, string][] = [
+      [days, "Hari"],
+      [hours, "Jam"],
+      [minutes, "Menit"],
+      [seconds, "Detik"],
+    ];
+    return (
+      <div
+        className="flex justify-center gap-3"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+        data-aos-once="true"
+      >
+        {items.map(([value, label]) => (
+          <div
+            key={label}
+            className="w-16 h-20 rounded-lg border-2 border-gold bg-maroon flex flex-col justify-center"
+          >
+            <p className="text-cream text-2xl text-center">{value}</p>
+            <p className="text-gold-light text-xs text-center">{label}</p>
+          </div>
+        ))}
+      </div>
+    );
   };
 
   useEffect(() => {
@@ -342,10 +267,10 @@ const App = () => {
   }, [page]);
 
   return (
-    <div className="relative">
+    <div className="relative mx-auto w-full max-w-[430px] min-h-dvh bg-maroon-deep overflow-x-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)]">
       {isLoading && (
         <div className="w-screen h-screen bg-mycolor fixed left-0 top-0 z-[999]">
-          <div className="inline-flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[999 items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-lg text-white bg-[#89565C] transition ease-in-out duration-150">
+          <div className="inline-flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-lg text-white bg-maroon transition ease-in-out duration-150">
             <svg
               className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
               xmlns="http://www.w3.org/2000/svg"
@@ -366,17 +291,8 @@ const App = () => {
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               ></path>
             </svg>
-            Processing...
+            Memproses...
           </div>
-        </div>
-      )}
-
-      {isPreview && (
-        <div
-          className="w-screen h-screen bg-mycolor fixed left-0 top-0 z-[999] px-1"
-          onClick={() => handleOnClickClosePhoto()}
-        >
-          <img src={currentPhoto} className="h-full object-contain" alt="" />
         </div>
       )}
 
@@ -386,85 +302,82 @@ const App = () => {
       <img
         src={Music}
         alt=""
-        className={`w-16 left-2 bottom-2 fixed z-50  ${
+        className={`w-14 bottom-3 fixed z-50 left-[max(0.75rem,calc(50%-215px+0.75rem))] drop-shadow-lg ${
           isMuted && "animate-spin-slow"
         }`}
         onClick={() => handleOnClickMusic()}
       />
+
+      {/* Cover */}
       <section
-        className={`overflow-hidden relative z-10 h-[calc(100dvh)] w-screen bg-[url('./assets/bg-cover-mobile.png')] bg-cover ${
+        className={`overflow-hidden relative z-10 h-[calc(100dvh)] w-full bg-gradient-to-b from-maroon-deep via-maroon to-maroon-deep ${
           isInvitationOpen && "-translate-y-full"
         } transition-all duration-[2000ms]`}
       >
-        <img
-          data-aos="fade-right"
-          data-aos-duration="2000"
-          src={OrnTreeImg}
-          alt=""
-          className="absolute -left-52 -top-16 h-80"
-        />
-        <img
-          data-aos="fade-left"
-          data-aos-duration="2000"
-          src={OrnTreeImg}
-          alt=""
-          className="absolute -right-52 -top-16 h-80"
-        />
-        <img
-          data-aos="fade-up-right"
-          data-aos-duration="2000"
-          src={OrnFlowerLeftImg}
-          alt=""
-          className="absolute -left-24 bottom-0 h-80"
-        />
-        <img
-          src={OrnFlowerLeftColorImg}
-          alt=""
-          className="absolute -left-4 bottom-0 h-40 animate-waving-flower-right origin-bottom"
-        />
-        <img
-          data-aos="fade-up-left"
-          data-aos-duration="2000"
-          src={OrnFlowerRightImg}
-          alt=""
-          className="absolute right-8 bottom-0 h-40"
-        />
-        <img
-          src={OrnFlowerRightColorImg}
-          alt=""
-          className="absolute -right-8 -bottom-3 h-40 animate-waving-flower-left origin-bottom"
-        />
-        <div className="flex flex-col justify-center items-center h-full w-screen text-[#89565C]">
+        <SongketPattern className="absolute inset-0 h-full w-full text-gold-light opacity-[0.12]" />
+        <PucukRebung className="absolute top-0 left-0 w-full h-8 text-gold rotate-180" />
+        <LaceEdge className="absolute top-8 left-0 w-full h-7 text-gold/70" />
+        <PucukRebung className="absolute bottom-0 left-0 w-full h-8 text-gold" />
+        <SulurCorner className="absolute top-16 left-3 w-14 text-gold/70" />
+        <SulurCorner className="absolute top-16 right-3 w-14 text-gold/70 -scale-x-100" />
+        <div className="absolute -bottom-3 -left-7 w-44 animate-sway origin-bottom-left pointer-events-none">
+          <PeonyCorner className="w-full" />
+        </div>
+        <div className="absolute -bottom-3 -right-7 w-44 -scale-x-100 animate-sway origin-bottom-left pointer-events-none">
+          <PeonyCorner className="w-full" />
+        </div>
+        <ButterflySide className="absolute top-[16%] left-6 w-10 animate-flutter pointer-events-none" />
+        <ButterflyOpen className="absolute top-[26%] right-8 w-12 animate-flutter-slow pointer-events-none" />
+        <ButterflyTiny className="absolute bottom-[30%] left-10 w-7 animate-flutter-slow pointer-events-none" />
+        <ButterflyTiny className="absolute bottom-[38%] right-12 w-6 animate-flutter pointer-events-none" />
+        <div className="relative flex flex-col justify-center items-center h-full w-full text-cream px-6 pb-16">
+          <MonogramVO
+            className="w-24 text-gold-light drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
+            data-aos="fade-down"
+            data-aos-duration="2000"
+          />
+          <p
+            className="mt-6 text-sm tracking-[0.3em] text-gold-light font-cinzel"
+            data-aos="fade-up"
+            data-aos-duration="2000"
+          >
+            THE WEDDING OF
+          </p>
           <h1
-            className="text-[60px] leading-[60px] flex flex-col gap-2 font-parisienne text-center"
+            className="mt-3 font-cinzel text-[42px] leading-tight tracking-[0.06em] text-gold-light text-center whitespace-nowrap"
             data-aos="fade-up"
             data-aos-delay="1000"
             data-aos-duration="3000"
           >
-            {/* <h1 className="text-6xl flex flex-col gap-2 font-great-vibes text-[#89565C] text-center"> */}
-            <span>Nadiya</span>
-            <span>&</span>
-            <span>Rian</span>
+            Vira <span className="mx-1">&</span> Ogi
           </h1>
-          <span
+          <p
+            className="mt-2 font-cinzel text-sm tracking-[0.16em] text-gold-light"
+            data-aos="fade-up"
+            data-aos-delay="1500"
+            data-aos-duration="2000"
+          >
+            Minggu, 20 September 2026
+          </p>
+          <Divider
+            className="mt-6 w-60 text-gold"
             data-aos="fade-up"
             data-aos-delay="2000"
             data-aos-duration="2000"
-            className=" mt-5 w-32 h-[2px] bg-[#89565C]"
-          ></span>
+          />
           <p
-            className="mt-5"
+            className="mt-5 text-xs tracking-widest font-lato"
             data-aos="fade-up"
             data-aos-delay="2000"
             data-aos-duration="2000"
           >
-            SPECIAL INVITATION TO
+            KEPADA YTH. BAPAK/IBU/SAUDARA/I
           </p>
           <span
             data-aos="fade-up"
             data-aos-delay="2500"
             data-aos-duration="2000"
-            className="text-[#89565C] font-bold text-2xl font-great-vibes px-2 py-1 rounded-lg mt-2 capitalize text-center w-80"
+            className="text-gold-light font-bold text-2xl font-great-vibes px-2 py-1 rounded-lg mt-2 capitalize text-center w-80"
           >
             {weddingWish.name}
           </span>
@@ -472,227 +385,138 @@ const App = () => {
             data-aos="fade-up"
             data-aos-delay="3000"
             data-aos-duration="2000"
-            className="px-4 py-1 bg-[#89565C] text-white text-sm font-lato mt-4 rounded-full flex justify-center items-center gap-1"
+            className="px-6 py-2 bg-gold-light text-maroon-deep font-semibold text-sm font-lato mt-4 rounded-full flex justify-center items-center gap-1"
             onClick={() => handleOnClickOpenInvitation()}
           >
-            Open Invitation
+            Buka Undangan
           </button>
         </div>
       </section>
+
       {isInvitationOpen && (
         <div className={`overflow-hidden`}>
+          {/* Pembuka */}
           <section
-            className={`min-h-[calc(100dvh)] bg-[#EAE2DC] w-screen ${
+            className={`h-[calc(100dvh)] bg-ivory w-full overflow-hidden flex flex-col justify-center items-center px-4 ${
               isInvitationOpen && "absolute top-0 left-0"
             }`}
           >
-            <div className="flex flex-col justify-center items-center h-full w-full px-4 py-8">
-              <div className="flex justify-center items-center gap-4">
-                <span
-                  className="w-10 h-[2px] bg-[#89565C]"
-                  data-aos="fade-down"
-                  data-aos-duration="2000"
-                ></span>
-                <div
-                  className="text-4xl text-[#89565C] font-apple flex justify-center"
-                  data-aos="fade-down"
-                  data-aos-duration="3000"
-                >
-                  <span>N</span>
-                  <span className="-ml-[14px] mt-3">R</span>
-                </div>
-                <span
-                  className="w-10 h-[2px] bg-[#89565C]"
-                  data-aos="fade-down"
-                  data-aos-duration="2000"
-                ></span>
-              </div>
-              <h2
-                className="font-lato text-[#89565C] uppercase mt-2 tracking-[0.15em]"
+            <SongketPattern className="absolute inset-0 h-full w-full text-maroon opacity-[0.05]" />
+            <PucukRebung className="absolute bottom-0 left-0 w-full h-8 text-maroon" />
+            <LaceEdge className="absolute bottom-8 left-0 w-full h-7 text-maroon/60 rotate-180" />
+            <ButterflySide className="absolute top-16 right-8 w-9 animate-flutter" />
+            <ButterflyTiny className="absolute top-28 left-8 w-6 animate-flutter-slow" />
+            <div className="relative flex justify-center items-center gap-4">
+              <span
+                className="w-10 h-[2px] bg-gold"
                 data-aos="fade-down"
                 data-aos-duration="2000"
-                data-aos-delay="500"
-              >
-                Wedding Invitation
-              </h2>
-              <h3
-                className="font-lato text-sm text-[#89565C]"
-                data-aos="zoom-in"
-                data-aos-duration="2000"
-                data-aos-delay="1000"
-              >
-                You're Invited!
-              </h3>
-              <div className="relative mt-10">
-                <img
-                  src={FrameImg}
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  data-aos-delay="2000"
-                  data-aos-once="true"
-                  alt=""
-                  className="w-52 relative z-10"
-                />
-                <img
-                  src={CoverImg}
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  data-aos-delay="2000"
-                  data-aos-once="true"
-                  alt=""
-                  className="absolute top-[40px] left-8 w-[148px] h-[280px] object-cover mix-blend-multiply"
-                />
-                <img
-                  src={OrnFlowerTopRightImg}
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="3000"
-                  data-aos-once="true"
-                  alt=""
-                  className="absolute z-10 -top-6 -right-6 w-20"
-                />
-                <img
-                  src={OrnFlowerTopLeftImg}
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="3000"
-                  data-aos-once="true"
-                  alt=""
-                  className="absolute z-10 -top-6 -left-6 h-24"
-                />
-                <img
-                  src={OrnFlowerMiddleLeftImg}
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="3000"
-                  data-aos-once="true"
-                  alt=""
-                  className="absolute z-10 bottom-16 -left-10 w-24"
-                />
-                <img
-                  src={OrnFlowerMiddleRightImg}
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="3000"
-                  data-aos-once="true"
-                  alt=""
-                  className="absolute z-10 bottom-16 -right-4 w-16"
-                />
-                <img
-                  src={OrnFlowerBottomLeftImg}
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="3000"
-                  data-aos-once="true"
-                  alt=""
-                  className="absolute z-10 -bottom-2 -left-8 w-32"
-                />
-                <img
-                  src={OrnFlowerBottomRightImg}
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="3000"
-                  data-aos-once="true"
-                  alt=""
-                  className="absolute z-10 bottom-0 -right-0 w-32"
-                />
-              </div>
-              <p
-                className="mt-8 text-[#89565C] text-lg font-lato"
+              ></span>
+              <MonogramVO
+                className="w-14 text-maroon"
                 data-aos="fade-down"
+                data-aos-duration="3000"
+              />
+              <span
+                className="w-10 h-[2px] bg-gold"
+                data-aos="fade-down"
+                data-aos-duration="2000"
+              ></span>
+            </div>
+            <h2
+              className="relative font-lato text-maroon uppercase mt-2 tracking-[0.15em]"
+              data-aos="fade-down"
+              data-aos-duration="2000"
+              data-aos-delay="500"
+            >
+              Undangan Pernikahan
+            </h2>
+            <h3
+              className="relative font-lato text-sm text-maroon"
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              data-aos-delay="1000"
+            >
+              Minggu, 20 September 2026
+            </h3>
+            <div className="relative mt-10">
+              <img
+                src={FrameImg}
+                data-aos="fade-up"
                 data-aos-duration="2000"
                 data-aos-delay="2000"
                 data-aos-once="true"
+                alt=""
+                className="w-52 relative z-10"
+              />
+              <img
+                src={PhotoCouple}
+                alt="Vira & Ogi"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-delay="2000"
+                data-aos-once="true"
+                className="absolute top-[40px] left-8 w-[148px] h-[280px] object-cover"
+              />
+              <SulurCorner
+                className="absolute z-20 -top-5 -left-5 w-14 text-gold"
+                data-aos="zoom-in"
+                data-aos-duration="2000"
+                data-aos-delay="3000"
+                data-aos-once="true"
+              />
+              <div
+                className="absolute z-20 -bottom-5 -right-5 w-14"
+                data-aos="zoom-in"
+                data-aos-duration="2000"
+                data-aos-delay="3000"
+                data-aos-once="true"
               >
-                #haRINAnbahagia
-              </p>
+                <SulurCorner className="w-full text-gold -scale-x-100 -scale-y-100" />
+              </div>
+              <TampukManggis
+                className="absolute z-20 -top-4 -right-4 w-10"
+                data-aos="zoom-in"
+                data-aos-duration="2000"
+                data-aos-delay="3000"
+                data-aos-once="true"
+              />
+              <TampukManggis
+                className="absolute z-20 -bottom-4 -left-4 w-10"
+                data-aos="zoom-in"
+                data-aos-duration="2000"
+                data-aos-delay="3000"
+                data-aos-once="true"
+              />
             </div>
+            <p
+              className="relative mt-8 text-maroon text-2xl font-great-vibes"
+              data-aos="fade-down"
+              data-aos-duration="2000"
+              data-aos-delay="2000"
+              data-aos-once="true"
+            >
+              Vira & Ogi
+            </p>
           </section>
+
+          {/* Ayat */}
           <section
-            className={`min-h-[calc(75dvh)] w-screen bg-[url('./assets/bg-quotes.png')] bg-cover py-8 flex justify-center flex-col relative overflow-hidden`}
+            className={`min-h-[calc(75dvh)] w-full bg-maroon py-24 flex justify-center items-center flex-col relative overflow-hidden`}
           >
-            <img
-              src={OrnFooter4}
-              className="absolute bottom-0 left-32 w-32"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            {/* <img
-              src={OrnFooter1}
-              className="absolute bottom-32 -left-12 w-24"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            /> */}
-            {/* <img
-              src={OrnFooter2}
-              className="absolute bottom-8 -left-10 w-28"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            /> */}
-            <img
-              src={OrnFooter3}
-              className="absolute -bottom-4 left-0 w-36"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter7}
-              className="absolute -bottom-8 -right-12 w-32"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            {/* <img
-              src={OrnFooter5}
-              className="absolute -bottom-4 right-16 w-32"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            /> */}
-            <img
-              src={OrnFooter6}
-              className="absolute -bottom-8 -rotate-[25deg] right-4 w-36"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            {/* <img
-              src={OrnFooter10}
-              className="absolute bottom-24 -right-16 w-32"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            /> */}
-            {/* <img
-              src={OrnFooter9}
-              className="absolute bottom-12 -right-16 w-24"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            /> */}
-            <img
-              src={OrnFooter1}
-              className="absolute -bottom-20 right-0 w-24"
-              alt=""
+            <SongketPattern className="absolute inset-0 h-full w-full text-gold-light opacity-[0.1]" />
+            <PucukRebung className="absolute top-0 left-0 w-full h-8 text-gold rotate-180" />
+            <LaceEdge className="absolute top-8 left-0 w-full h-7 text-gold/70" />
+            <PucukRebung className="absolute bottom-0 left-0 w-full h-8 text-gold" />
+            <LaceEdge className="absolute bottom-8 left-0 w-full h-7 text-gold/70 rotate-180" />
+            <TampukManggis
+              className="w-16 relative"
               data-aos="zoom-in"
               data-aos-duration="2000"
               data-aos-once="true"
             />
             <h1
-              className="text-xl text-[#89565C] font-bold mt-12 text-center"
+              className="text-xl text-gold-light font-bold mt-8 text-center relative"
               data-aos="fade-up"
               data-aos-duration="2000"
               data-aos-once="true"
@@ -700,18 +524,19 @@ const App = () => {
               بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ
             </h1>
             <p
-              className="mt-12 text-[#89565C] text-sm font-lato px-8 text-center"
+              className="mt-8 text-cream text-sm font-lato px-8 text-center leading-6 relative"
               data-aos="fade-up"
               data-aos-duration="2000"
               data-aos-once="true"
             >
-              "And one of His signs is that He created for you spouses from
-              among yourselves so that you may find comfort in them. And He has
-              placed between you compassion and mercy. Surely in this are signs
-              for people who reflect"
+              "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan
+              untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu
+              cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di
+              antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian
+              itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir."
             </p>
             <p
-              className="text-center text-[#89565C] text-sm mt-4"
+              className="text-center text-gold-light text-sm mt-4 relative"
               data-aos="fade-up"
               data-aos-duration="2000"
               data-aos-once="true"
@@ -719,20 +544,35 @@ const App = () => {
               (QS. Ar-Rum: 21)
             </p>
           </section>
+
+          {/* Mempelai */}
           <section
-            className={`min-h-[calc(100dvh)] w-screen bg-[#EAE2DC] py-2 flex justify-center flex-col `}
+            className={`min-h-[calc(100dvh)] w-full bg-ivory py-2 flex justify-center flex-col relative overflow-hidden`}
           >
-            <div className="px-4 pt-16 flex items-center flex-col text-[#89565C] ">
+            <SongketPattern className="absolute inset-0 h-full w-full text-maroon opacity-[0.05]" />
+            <PucukRebung className="absolute top-0 left-0 w-full h-8 text-maroon rotate-180" />
+            <LaceEdge className="absolute top-8 left-0 w-full h-7 text-maroon/60" />
+            <div className="absolute top-10 -right-8 w-36 rotate-180 opacity-90">
+              <PeonyCorner className="w-full" />
+            </div>
+            <ButterflyTiny className="absolute top-44 left-6 w-6 animate-flutter" />
+            <div className="relative px-4 pt-24 pb-12 flex items-center flex-col text-maroon">
               <h2
                 className="font-great-vibes text-4xl text-center font-medium tracking-[0.1em]"
                 data-aos="fade-up"
                 data-aos-duration="2000"
                 data-aos-once="true"
               >
-                The Wedding Of
+                Kedua Mempelai
               </h2>
+              <Divider
+                className="mt-4 w-56 text-gold"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-once="true"
+              />
               <h3
-                className="text-sm mt-4 w-full text-center"
+                className="text-sm mt-6 w-full text-center"
                 data-aos="fade-up"
                 data-aos-duration="2000"
                 data-aos-once="true"
@@ -740,616 +580,400 @@ const App = () => {
                 بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ
               </h3>
               <p
-                className="text-sm mt-8 text-center"
+                className="text-sm mt-6 text-center leading-6"
                 data-aos="fade-up"
                 data-aos-duration="2000"
                 data-aos-once="true"
               >
-                Assalamualaikum Warrahmatullahi Wabarakatuh, with the blessing
-                and mercy from Allah SWT. We cordially invite you to the wedding
-                of :
+                Assalamu'alaikum Warahmatullahi Wabarakatuh. Maha Suci Allah
+                yang telah menciptakan makhluk-Nya berpasang-pasangan, ya Allah
+                perkenankanlah kami menikahkan putra-putri kami:
               </p>
 
               <div
-                className="mt-16 relative border border-[#89565C] w-52 h-72 rounded-t-full"
+                className="mt-16 relative border-2 border-gold w-52 h-72 rounded-t-full p-1.5 bg-ivory"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
                 <img
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  src={NadiyaImg}
-                  alt=""
-                  className="absolute w-48 h-[268px] top-2 left-[6px] rounded-t-full object-cover"
+                  src={PhotoBride}
+                  alt="Dean Savira"
+                  className="w-full h-full rounded-t-full object-cover"
                 />
-                <img
+                <div
+                  className="absolute -top-8 inset-x-0 flex justify-center"
                   data-aos="zoom-in"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  src={OrnFlowerMiddleLeftImg}
-                  alt=""
-                  className="absolute -left-14 -bottom-1 h-52 animate-waving-flower-left origin-bottom"
-                />
-                <img
+                >
+                  <PeonySpray className="w-32" />
+                </div>
+                <div
+                  className="absolute -left-9 -bottom-4 w-20"
                   data-aos="zoom-in"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  src={OrnFlowerBottomLeftImg2}
-                  alt=""
-                  className="absolute -left-4 -bottom-12 h-24"
-                />
-                <img
+                >
+                  <PeonyBloom className="w-full rotate-12" />
+                </div>
+                <div
+                  className="absolute -right-9 -bottom-4 w-20"
                   data-aos="zoom-in"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  src={OrnFlowerBottomRightImg}
-                  alt=""
-                  className="absolute -right-4 -bottom-8 h-20"
-                />
+                >
+                  <PeonyBloom className="w-full -rotate-12" />
+                </div>
               </div>
               <div className="mt-12">
                 <h1
-                  className="font-apple tracking-[0.05em] text-3xl text-center "
+                  className="font-apple tracking-[0.05em] text-3xl text-center text-gold"
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
-                  Nadiya S.T.
+                  Dean Savira
                 </h1>
                 <p
                   className="mt-4 text-sm text-center w-full"
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
-                  Putri Ketiga dari Bapak Bajuri S.H., <br /> dan <br /> Ibu
-                  Eviyana Hamid Jotang
+                  Putri Kedua dari Bapak Paryanto <br /> dan <br /> Ibu Dewi
+                  Asmara
                 </p>
               </div>
 
-              <div className="font-apple text-4xl my-8">&</div>
+              <div
+                className="font-great-vibes text-3xl my-8"
+                data-aos="zoom-in"
+                data-aos-duration="2000"
+              >
+                dengan
+              </div>
 
               <div
-                className="relative border border-[#89565C] w-52 h-72 rounded-t-full"
+                className="relative border-2 border-gold w-52 h-72 rounded-t-full p-1.5 bg-ivory"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
                 <img
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  src={RianImg}
-                  alt=""
-                  className="absolute w-48 h-[268px] top-2 left-[6px] rounded-t-full object-cover"
+                  src={PhotoGroom}
+                  alt="Bogita Mersa Putra"
+                  className="w-full h-full rounded-t-full object-cover"
                 />
-                <img
+                <div
+                  className="absolute -top-8 inset-x-0 flex justify-center"
                   data-aos="zoom-in"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  src={OrnFlowerMiddleLeftImg2}
-                  alt=""
-                  className="absolute -right-14 -bottom-1 h-52 animate-waving-flower-right origin-bottom"
-                />
-                <img
+                >
+                  <PeonySpray className="w-32" />
+                </div>
+                <div
+                  className="absolute -left-9 -bottom-4 w-20"
                   data-aos="zoom-in"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  src={OrnFlowerBottomLeft1Img}
-                  alt=""
-                  className="absolute -right-2 -bottom-8 h-24"
-                />
-                <img
+                >
+                  <PeonyBloom className="w-full rotate-12" />
+                </div>
+                <div
+                  className="absolute -right-9 -bottom-4 w-20"
                   data-aos="zoom-in"
                   data-aos-duration="2000"
                   data-aos-delay="1000"
-                  src={OrnFlowerBottomRight2Img}
-                  alt=""
-                  className="absolute -left-4 -bottom-8 h-20"
-                />
+                >
+                  <PeonyBloom className="w-full -rotate-12" />
+                </div>
               </div>
               <div className="mt-12">
                 <h1
-                  className="font-apple tracking-[0.05em] text-3xl text-center"
+                  className="font-apple tracking-[0.05em] text-3xl text-center text-gold"
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
-                  Rian Oktio M.P. S.Kom.
+                  Bogita Mersa Putra
                 </h1>
                 <p
                   className="mt-4 text-sm text-center w-full"
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
-                  Putra Keempat dari Bapak Dr. Ir. H. Syafril Hadi, M.S., <br />
+                  Putra Ketiga dari Bapak Dr. Ir. H. Syafril Hadi, M.S. <br />
                   dan <br /> Ibu Hj. Meri Azrinelti, S.T., M.M.
                 </p>
               </div>
             </div>
           </section>
+
+          {/* Save The Date */}
           <section
-            className={`w-screen bg-[#EAE2DC] py-4 flex justify-start flex-col `}
+            className={`w-full bg-maroon-deep pt-20 pb-16 flex justify-center flex-col relative overflow-hidden`}
           >
-            <div className="px-4 pt-24 pb-4 flex items-center flex-col text-[#89565C]">
+            <SongketPattern className="absolute inset-0 h-full w-full text-gold-light opacity-[0.1]" />
+            <PucukRebung className="absolute top-0 left-0 w-full h-8 text-gold rotate-180" />
+            <LaceEdge className="absolute top-8 left-0 w-full h-7 text-gold/70" />
+            <div className="relative px-4 py-8 flex items-center flex-col">
               <h2
-                className="font-great-vibes text-4xl text-center font-medium tracking-[0.1em] mb-8"
+                className="font-great-vibes text-4xl text-center font-medium tracking-[0.1em] text-gold-light"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
                 Save The Date
               </h2>
-              <div className="relative">
-                <img
-                  src={FrameDateImg}
-                  alt=""
-                  className="w-72"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                />
-                <img
-                  src={FrameOrnLeftImg}
-                  alt=""
-                  className="absolute top-[40px] -left-12 w-32"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  data-aos-delay="1000"
-                />
-                <img
-                  src={FrameOrnRightImg}
-                  alt=""
-                  className="absolute top-[40px] -right-12 w-32"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  data-aos-delay="1000"
-                />
-                <h1
-                  className="font-great-vibes text-[26px] w-full text-center font-medium tracking-[0.05em] mb-8 absolute top-[72px] left-0 leading-5"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  13<sup>rd</sup> <br />
-                  October 2024
-                </h1>
-                <CountDown date={dday} renderer={CountdownRenderer} />
-              </div>
-            </div>
-          </section>
-          <section
-            className={`min-h-[calc(100dvh)] w-screen bg-[#EAE2DC] py-4 flex justify-start flex-col `}
-          >
-            <div className="px-4 pt-2 pb-16 flex items-center flex-col text-[#89565C] ">
+              <TampukManggis
+                className="w-14 mt-6"
+                data-aos="zoom-in"
+                data-aos-duration="2000"
+              />
               <p
-                className="text-center text-sm leading-4  mb-4"
+                className="mt-6 text-cream font-news text-lg"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
-                With the joy of our hearts, we cordially invite you to our
-                special day. Your presence will enhance the happiness to us
+                Minggu
               </p>
-              <h3 data-aos="fade-up" data-aos-duration="2000">
-                Sunday
-              </h3>
+              <p
+                className="font-great-vibes text-3xl text-gold-light text-center"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
+                20 September 2026
+              </p>
+              <ButterflyOpen className="absolute top-2 right-3 w-10 animate-flutter pointer-events-none" />
+              <ButterflyTiny className="absolute top-32 left-6 w-6 animate-flutter-slow pointer-events-none" />
+              <div className="mt-8">
+                <CountDown date={dday} renderer={CountdownRenderer} />
+              </div>
+              <a
+                className="border border-gold text-gold-light px-6 py-2 rounded-full text-xs font-lato mt-8"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Vira+%26+Ogi&dates=20260920T110000/20260920T150000&location=Kediaman+Mempelai+Wanita+%7C+Jl.+Pertamina+RT.+13+%28Depan+SMAN+2+Muaro+Jambi%29%2C+Sengeti%2C+Muaro+Jambi%2C+Jambi%2C+Indonesia&details=Merupakan+suatu+kehormatan+dan+kebahagiaan+bagi+kami+apabila+Bapak%2FIbu%2FSaudara%2Fi+berkenan+hadir+untuk+memberikan+do%27a+restu+%7C+Pernikahan+Vira+%26+Ogi+%7C+Minggu%2C+20+September+2026"
+                target="_blank"
+                rel="nofollow"
+              >
+                Tambah ke Kalender
+              </a>
+            </div>
+          </section>
+
+          {/* Acara */}
+          <section
+            className={`min-h-[calc(100dvh)] w-full bg-ivory pt-24 pb-16 flex justify-center flex-col relative overflow-hidden`}
+          >
+            <SongketPattern className="absolute inset-0 h-full w-full text-maroon opacity-[0.05]" />
+            <PucukRebung className="absolute top-0 left-0 w-full h-8 text-maroon rotate-180" />
+            <LaceEdge className="absolute top-8 left-0 w-full h-7 text-maroon/60" />
+            <div className="absolute -bottom-4 -left-8 w-40 opacity-90">
+              <PeonyCorner className="w-full" />
+            </div>
+            <ButterflySide className="absolute top-16 right-6 w-9 animate-flutter-slow" />
+            <div className="relative px-6 flex items-center flex-col text-maroon">
+              <h2
+                className="font-great-vibes text-4xl text-center font-medium tracking-[0.1em]"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
+                Waktu & Tempat
+              </h2>
+              <Divider
+                className="mt-4 w-56 text-gold"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              />
+              <p
+                className="text-center text-sm leading-6 mt-6 mb-8"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
+                Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+                Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu
+                kepada putra-putri kami
+              </p>
+              <GoldCard
+                tone="maroon"
+                className="w-full max-w-sm"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
+                <div className="flex flex-col items-center text-cream">
+                  <TampukManggis className="w-14" />
+                  <p className="font-cinzel text-3xl text-center mt-4 text-gold-light">
+                    Resepsi
+                  </p>
+                  <p className="font-news text-sm text-center mt-4">
+                    Minggu, 20 September 2026
+                  </p>
+                  <p className="font-news text-xs text-center mt-1">
+                    Pukul 11.00 WIB s/d Selesai
+                  </p>
+                  <Divider className="w-44 mt-6 text-gold" />
+                  <p className="font-news text-lg text-center mt-6 leading-5 text-gold-light">
+                    Kediaman Mempelai Wanita
+                  </p>
+                  <p className="font-news text-xs text-center mt-2 leading-4">
+                    Jl. Pertamina RT. 13 (Depan SMAN 2 Muaro Jambi), Sengeti,
+                    Muaro Jambi
+                  </p>
+                  <a
+                    className="px-6 py-1.5 mt-6 bg-gold-light text-maroon-deep font-semibold rounded-full text-sm"
+                    href="https://maps.google.com/?daddr=-1.486287,103.509666"
+                    target="_blank"
+                    rel="nofollow"
+                  >
+                    Lihat Peta
+                  </a>
+                </div>
+              </GoldCard>
+            </div>
+          </section>
+
+          {/* Tanda Kasih */}
+          <section
+            className={`min-h-[calc(100dvh)] w-full bg-maroon px-4 py-24 flex justify-center flex-col relative overflow-hidden`}
+          >
+            <SongketPattern className="absolute inset-0 h-full w-full text-gold-light opacity-[0.1]" />
+            <PucukRebung className="absolute top-0 left-0 w-full h-8 text-gold rotate-180" />
+            <LaceEdge className="absolute top-8 left-0 w-full h-7 text-gold/70" />
+            <PucukRebung className="absolute bottom-0 left-0 w-full h-8 text-gold" />
+            <LaceEdge className="absolute bottom-8 left-0 w-full h-7 text-gold/70 rotate-180" />
+            <div className="relative px-4 flex items-center flex-col">
+              <h2
+                className="font-great-vibes text-4xl text-center font-medium tracking-[0.05em] text-gold-light"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
+                Tanda Kasih
+              </h2>
+              <p
+                className="font-news text-center text-sm text-cream mt-6 leading-6"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
+                Kehadiran Bapak/Ibu/Saudara/i merupakan hadiah terindah bagi
+                kami. Namun apabila ingin memberikan tanda kasih, dapat melalui:
+              </p>
+
+              <GoldCard
+                tone="ivory"
+                className="w-full max-w-xs mt-8"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
+                <div className="flex flex-col items-center text-maroon">
+                  <div className="font-news text-2xl">Bank Mandiri</div>
+                  <div className="font-news text-center mt-1" id="acc_num1">
+                    1100022166133
+                  </div>
+                  <div className="font-news text-center -mt-1">
+                    an. Dean Savira
+                  </div>
+                  <button
+                    className="font-news text-lg mt-2 border-b-2 border-maroon pb-1"
+                    onClick={() => handleOnClickClipboard("acc_num1")}
+                  >
+                    Salin
+                  </button>
+                </div>
+              </GoldCard>
+
+              <DividerCrest
+                className="w-44 mt-6 text-gold-light"
+                data-aos="zoom-in"
+                data-aos-duration="2000"
+              />
+              <GoldCard
+                tone="ivory"
+                className="w-full max-w-xs mt-6"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+              >
+                <div className="flex flex-col items-center text-maroon">
+                  <div className="font-news text-2xl">Bank BCA</div>
+                  <div className="font-news text-center mt-1" id="acc_num2">
+                    8610404821
+                  </div>
+                  <div className="font-news text-center -mt-1">
+                    an. Bogita Mersa Putra
+                  </div>
+                  <button
+                    className="font-news text-lg mt-2 border-b-2 border-maroon pb-1"
+                    onClick={() => handleOnClickClipboard("acc_num2")}
+                  >
+                    Salin
+                  </button>
+                </div>
+              </GoldCard>
+            </div>
+          </section>
+
+          {/* Ucapan & Do'a */}
+          <section
+            className={`min-h-[calc(100dvh)] w-full bg-ivory px-4 pt-24 pb-16 flex justify-start flex-col relative overflow-hidden`}
+          >
+            <SongketPattern className="absolute inset-0 h-full w-full text-maroon opacity-[0.05]" />
+            <PucukRebung className="absolute top-0 left-0 w-full h-8 text-maroon rotate-180" />
+            <LaceEdge className="absolute top-8 left-0 w-full h-7 text-maroon/60" />
+            <div className="relative px-4 flex w-full items-center flex-col text-maroon">
               <h2
                 className="font-great-vibes text-4xl text-center font-medium tracking-[0.05em]"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
-                October, 13<sup>rd</sup> 2024
+                Ucapan & Do'a
               </h2>
-            </div>
-            <div className="relative flex justify-center flex-col items-center">
-              <img src={FrameTopImg} alt="" className="w-80 z-10" />
-              <img src={FrameCenterImg} alt="" className="w-80 z-10" />
-              <img src={FrameBottomImg} alt="" className="w-80 z-10" />
-              <div className="absolute top-24 z-50 flex justify-center items-center flex-col w-52 text-[#F9EACA]">
-                <img
-                  src={AkadImg}
-                  className="ml-2 w-16"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  alt=""
-                />
-                <p
-                  className="font-cinzel text-3xl text-center mt-4"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  Akad
-                </p>
-                <p
-                  className="font-news text-xs text-center"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  08.00 - 10.00
-                </p>
-                <p
-                  className="font-cinzel text-2xl mt-6 mb-4"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  &
-                </p>
-                <img
-                  src={ReceptionImg}
-                  className="ml-2 w-16"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  alt=""
-                />
-                <p
-                  className="font-cinzel text-3xl text-center mt-4"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  Reception
-                </p>
-                <p
-                  className="font-news text-xs text-center"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  10.00 - Selesai
-                </p>
-                <p
-                  className="font-news text-lg text-center mt-6 leading-5"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  Ballroom UIN Raden Intan
-                </p>
-                <p
-                  className="font-news text-xs text-center mt-2 leading-4"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  Jl. Ryacudu, Way Dadi, Kec. Sukarame, Kota Bandar Lampung
-                </p>
-                <a
-                  className="px-4 py-1 mt-8 border border-[#F9EACA] rounded-lg text-sm"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  href="https://www.google.com/maps/place/BALL+ROOM+RADEN+INTAN/@-5.3794358,105.3000924,17z/data=!3m1!4b1!4m6!3m5!1s0x2e40db9e01a9b95b:0x3c61c68ee958c5fd!8m2!3d-5.3794358!4d105.3026673!16s%2Fg%2F11s4d043l2?entry=ttu&g_ep=EgoyMDI0MDkyNS4wIKXMDSoASAFQAw%3D%3D"
-                  target="_blank"
-                  rel="nofollow"
-                >
-                  View Maps
-                </a>
-              </div>
-              <img
-                src={OrnEventTLImg}
-                alt=""
-                className="w-32 absolute top-8 z-20 -left-12"
-                data-aos="zoom-in"
+              <Divider
+                className="mt-4 mb-8 w-56 text-gold"
+                data-aos="fade-up"
                 data-aos-duration="2000"
               />
-              <img
-                src={OrnEventTL2Img}
-                alt=""
-                className="w-44 absolute -top-8 z-20 left-12"
-                data-aos="zoom-in"
-                data-aos-duration="2000"
-              />
-              <img
-                src={OrnEventTRImg}
-                alt=""
-                className="w-64 absolute -top-3 z-20 -right-12"
-                data-aos="zoom-in"
-                data-aos-duration="2000"
-              />
-              <img
-                src={OrnEventBL2Img}
-                alt=""
-                className="w-64 absolute -bottom-12 z-20 left-8"
-                data-aos="zoom-in"
-                data-aos-duration="2000"
-              />
-              <img
-                src={OrnEventBLImg}
-                alt=""
-                className="w-48 absolute -bottom-4 z-20 -left-8"
-                data-aos="zoom-in"
-                data-aos-duration="2000"
-              />
-              <img
-                src={OrnEventBRImg}
-                alt=""
-                className="w-48 absolute bottom-0 z-20 -right-8"
-                data-aos="zoom-in"
-                data-aos-duration="2000"
-              />
-              <div className="absolute w-80 bg-[#89565C] h-[45.4rem] rounded-full z-0"></div>
-            </div>
-          </section>
-          <section
-            className={`min-h-[calc(100dvh)] w-screen bg-[#EAE2DC] py-4 flex justify-start flex-col `}
-          >
-            <div className="px-4 py-16 flex items-center flex-col text-[#89565C] ">
-              <h2
-                className="font-great-vibes text-4xl text-center font-medium tracking-[0.1em] mb-8"
+              <GoldCard
+                tone="maroon"
+                className="w-full max-w-sm"
                 data-aos="fade-up"
                 data-aos-duration="2000"
                 data-aos-once="true"
               >
-                Portrait of Us
-              </h2>
-              <div className="flex w-full">
-                <div
-                  className="bg-blue-200 border border-white  w-screen h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  <img
-                    src={Lebar6Img}
-                    alt=""
-                    className="w-full h-full object-cover object-center"
-                    onClick={() => handleOnClickPhoto(Lebar6Img)}
+                <div className="flex flex-col w-full font-news text-cream">
+                  <label htmlFor="name">Nama</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="rounded border border-gold/60 bg-white text-maroon-deep px-2 py-1 disabled:bg-blush/25 capitalize"
+                    autoComplete="off"
+                    value={weddingWish?.name}
+                    onChange={(e) => handleOnChange(e)}
+                    disabled
                   />
-                </div>
-              </div>
-              <div className="flex w-full">
-                <div
-                  className="bg-green-200 border border-white w-1/2 h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  <img
-                    src={Lebar7Img}
-                    alt=""
-                    className="w-full h-full object-cover object-center"
-                    onClick={() => handleOnClickPhoto(Lebar7Img)}
+                  <label htmlFor="wish" className="mt-4">
+                    Ucapan / Do'a
+                  </label>
+                  <textarea
+                    id="wish"
+                    name="wish"
+                    className="rounded border border-gold/60 bg-white text-maroon-deep px-2 py-1"
+                    value={weddingWish?.wish}
+                    onChange={(e) => handleOnChange(e)}
                   />
+                  <button
+                    className="bg-gold-light text-maroon-deep font-semibold text-xs rounded px-4 py-1.5 mt-4 self-start"
+                    onClick={() => handleOnClickSend()}
+                  >
+                    Kirim
+                  </button>
                 </div>
-                <div
-                  className="bg-green-200 border border-white w-1/2 h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  data-aos-delay="500"
-                >
-                  <img
-                    src={Lebar1Img}
-                    alt=""
-                    className="w-full h-full object-cover object-center"
-                    onClick={() => handleOnClickPhoto(Lebar1Img)}
-                  />
-                </div>
-              </div>
-              <div className="flex w-full">
-                <div
-                  className="bg-red-200 border border-white w-1/3 h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="1600"
-                  data-aos-delay="500"
-                >
-                  <img
-                    src={Lebar4Img}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    onClick={() => handleOnClickPhoto(Lebar4Img)}
-                  />
-                </div>
-                <div
-                  className="bg-red-200 border border-white  w-1/3 h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="1800"
-                  data-aos-delay="750"
-                >
-                  <img
-                    src={Lebar8Img}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    onClick={() => handleOnClickPhoto(Lebar8Img)}
-                  />
-                </div>
-                <div
-                  className="bg-red-200 border border-white w-1/3 h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  <img
-                    src={Lebar5Img}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    onClick={() => handleOnClickPhoto(Lebar5Img)}
-                  />
-                </div>
-              </div>
-              <div className="flex w-full">
-                <div
-                  className="bg-green-200 border border-white w-1/2 h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  <img
-                    src={Lebar2Img}
-                    alt=""
-                    className="w-full h-full object-cover object-center"
-                    onClick={() => handleOnClickPhoto(Lebar2Img)}
-                  />
-                </div>
-                <div
-                  className="bg-green-200 border border-white w-1/2 h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                  data-aos-delay="500"
-                >
-                  <img
-                    src={Lebar9Img}
-                    alt=""
-                    className="w-full h-full object-cover object-center"
-                    onClick={() => handleOnClickPhoto(Lebar9Img)}
-                  />
-                </div>
-              </div>
-              <div className="flex w-full">
-                <div
-                  className="bg-blue-200 border border-white w-screen h-48"
-                  data-aos="fade-up"
-                  data-aos-duration="2000"
-                >
-                  <img
-                    src={Lebar3Img}
-                    alt=""
-                    className="w-full h-full object-cover object-center"
-                    onClick={() => handleOnClickPhoto(Lebar3Img)}
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-          <section
-            className={`min-h-[calc(100dvh)] w-screen bg-[#89565C] px-4 py-8 flex justify-start flex-col overflow-hidden`}
-          >
-            <div
-              className="px-8 pt-24 pb-28 flex items-center flex-col text-[#89565C] rounded-t-full bg-[url('./assets/bg-quotes.png')] bg-cover bg-mycolor border-4 border-[#F9EACA] relative"
-              data-aos="fade-up"
-              data-aos-duration="2000"
-            >
-              <h2
-                className="font-great-vibes text-4xl text-center font-medium tracking-[0.05em] mb-8"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-              >
-                Wedding Gift
-              </h2>
-              <p
-                className="font-news text-center text-sm"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-              >
-                Your attendance at our wedding is the greatest gift of all.
-                However, if you wish to honor us with a gift, a cash gift would
-                be very welcome.
-              </p>
-              <div
-                className="font-news text-2xl mt-8"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-              >
-                Bank BCA
-              </div>
-              <div
-                className="font-news text-center mt-1"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                id="acc_num1"
-              >
-                2940617378
-              </div>
-              <div
-                className="font-news text-center -mt-1"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-              >
-                an. Nadiya
-              </div>
-              <button
-                className="font-news text-lg mt-2 border-b-2 border-[#89565C] pb-1"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                onClick={() => handleOnClickClipboard("acc_num1")}
-              >
-                Copy
-              </button>
-
-              <div
-                className="font-news text-2xl mt-8"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-              >
-                Bank BNI
-              </div>
-              <div
-                className="font-news text-center mt-1"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                id="acc_num2"
-              >
-                1996101804
-              </div>
-              <div
-                className="font-news text-center -mt-1"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-              >
-                an. Rian Oktio Mersa Putra
-              </div>
-              <button
-                className="font-news text-lg mt-2 border-b-2 border-[#89565C] pb-1 z-20"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                onClick={() => handleOnClickClipboard("acc_num2")}
-              >
-                Copy
-              </button>
-              <img
-                src={OrnEventTRImg}
-                alt=""
-                className="absolute -top-2 -right-8 h-52"
+              </GoldCard>
+              <DividerCrest
+                className="w-44 mt-8 text-gold"
                 data-aos="zoom-in"
                 data-aos-duration="2000"
               />
-              <img
-                src={OrnEventCover1Img}
-                alt=""
-                className="absolute -bottom-16 -left-32 h-60"
-                data-aos="zoom-in"
-                data-aos-duration="2000"
-              />
-              <img
-                src={OrnEventCover3Img}
-                alt=""
-                className="absolute -bottom-20 -right-24 h-64"
-                data-aos="zoom-in"
-                data-aos-duration="2000"
-              />
-            </div>
-          </section>
-          <section
-            className={`min-h-[calc(100dvh)] w-screen bg-[#EAE2DC] px-4 py-8 flex justify-start flex-col overflow-hidden`}
-          >
-            <div className="px-8 py-8 flex w-full items-center flex-col text-[#89565C] ">
-              <h2
-                className="font-great-vibes text-4xl text-center font-medium tracking-[0.05em] mb-8"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-              >
-                Wedding Wish
-              </h2>
-              <div
-                className="flex flex-col w-full font-news mb-4"
-                data-aos="fade-up"
-                data-aos-duration="2000"
-                data-aos-once="true"
-              >
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="rounded px-2 py-1 disabled:bg-[#fde5e8] capitalize"
-                  autoComplete="off"
-                  value={weddingWish?.name}
-                  onChange={(e) => handleOnChange(e)}
-                  disabled
-                />
-              </div>
-              <div className="flex flex-col w-full font-news mb-4">
-                <label htmlFor="wish">Wish / Doa</label>
-                <textarea
-                  id="wish"
-                  name="wish"
-                  className="rounded px-2 py-1"
-                  value={weddingWish?.wish}
-                  onChange={(e) => handleOnChange(e)}
-                />
-              </div>
-              <button
-                className="bg-[#89565C] text-left text-[#F9EACA] text-xs rounded px-4 py-1"
-                onClick={() => handleOnClickSend()}
-              >
-                Send
-              </button>
               {listWeddingWish.length > 0 && (
                 <>
                   <div
-                    className="bg-white w-full rounded-md p-4 mt-16 font-news"
+                    className="bg-white border-2 border-gold w-full rounded-xl p-4 mt-12 font-news text-maroon"
                     data-aos="fade-up"
                     data-aos-duration="2000"
                     data-aos-once="true"
@@ -1362,11 +986,11 @@ const App = () => {
                         <p className="text-left text-xs -mt-1 text-black">
                           {formatDate(wish.created_at)}
                         </p>
-                        <p className="leading-4 mt-2 text-xs text-justify normal-case first-letter:uppercase text-blac whitespace-pre-line">
+                        <p className="leading-4 mt-2 text-xs text-justify normal-case first-letter:uppercase text-black whitespace-pre-line">
                           {wish?.wish}
                         </p>
                         <div className="flex justify-center items-center">
-                          <hr className="mt-2 w-12 border-[#89565C]" />
+                          <hr className="mt-2 w-12 border-maroon" />
                         </div>
                       </div>
                     ))}
@@ -1378,148 +1002,86 @@ const App = () => {
                     data-aos-once="true"
                   >
                     <button
-                      className="bg-[#89565C] px-4 py-0.5 text-[#F9EACA] rounded disabled:bg-[#cda9ad]"
+                      className="bg-maroon px-4 py-1 text-cream rounded disabled:opacity-50"
                       disabled={page === 0}
                       onClick={() => setPage(page - 5)}
                     >
-                      Prev
+                      Sebelumnya
                     </button>
                     <button
-                      className="bg-[#89565C] px-4 py-0.5 text-[#F9EACA] rounded disabled:bg-[#cda9ad]"
-                      disabled={page + 5 > weddingWishLength}
+                      className="bg-maroon px-4 py-1 text-cream rounded disabled:opacity-50"
+                      disabled={page + 5 >= weddingWishLength}
                       onClick={() => setPage(page + 5)}
                     >
-                      Next
+                      Berikutnya
                     </button>
                   </div>
                 </>
               )}
             </div>
           </section>
-          <section
-            className={`min-h-[calc(60dvh)] w-screen bg-[url('./assets/bg-quotes.png')] bg-cover px-4 py-8 flex justify-start flex-col overflow-hidden relative`}
-          >
-            <img
-              src={OrnFooter4}
-              className="absolute bottom-0 left-32 w-32"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter1}
-              className="absolute bottom-32 -left-12 w-24"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter2}
-              className="absolute bottom-8 -left-10 w-28"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter3}
-              className="absolute -bottom-4 left-0 w-36"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter7}
-              className="absolute -bottom-8 -right-12 w-32"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter5}
-              className="absolute -bottom-4 right-16 w-32"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter6}
-              className="absolute -bottom-8 -rotate-[25deg] right-4 w-36"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter10}
-              className="absolute bottom-24 -right-16 w-32"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter9}
-              className="absolute bottom-12 -right-16 w-24"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <img
-              src={OrnFooter1}
-              className="absolute -bottom-20 right-0 w-24"
-              alt=""
-              data-aos="zoom-in"
-              data-aos-duration="2000"
-              data-aos-once="true"
-            />
-            <div className="absolute left-1/2 top-1/3 mt-12 -translate-x-1/2 -translate-y-1/2 text-center text-[#89565C] w-full">
-              {/* <div
-                className="mt-3 font-parisienne text-4xl tracking-[0.06em]"
-                data-aos="fade-down"
-                data-aos-duration="3000"
-                data-aos-once="true"
-              >
-                Nadiya & Rian
-              </div>
-              <div
-                className="mt-6 font-news text-lg"
-                data-aos="fade-down"
-                data-aos-duration="3000"
-                data-aos-once="true"
-              >
-                October, 13<sup>rd</sup> 2024
-              </div>
 
-              <hr
-                className="border-[#F9EACA] w-20 mx-auto mt-4"
+          {/* Penutup */}
+          <section
+            className={`min-h-[calc(60dvh)] w-full bg-gradient-to-b from-maroon to-maroon-deep px-4 pt-14 pb-16 flex justify-center items-center flex-col relative overflow-hidden`}
+          >
+            <SongketPattern className="absolute inset-0 h-full w-full text-gold-light opacity-[0.1]" />
+            <PucukRebung className="absolute top-0 left-0 w-full h-8 text-gold rotate-180" />
+            <LaceEdge className="absolute top-8 left-0 w-full h-7 text-gold/70" />
+            <div className="absolute -bottom-8 -left-9 w-40 animate-sway origin-bottom-left pointer-events-none">
+              <PeonyCorner className="w-full" />
+            </div>
+            <div className="absolute -bottom-8 -right-9 w-40 -scale-x-100 animate-sway origin-bottom-left pointer-events-none">
+              <PeonyCorner className="w-full" />
+            </div>
+            <ButterflyTiny className="absolute top-16 left-8 w-6 animate-flutter" />
+            <ButterflyTiny className="absolute top-24 right-10 w-7 animate-flutter-slow" />
+            <div className="relative flex flex-col items-center text-center text-cream">
+              <AngsoDuo
+                className="w-52"
                 data-aos="fade-down"
                 data-aos-duration="3000"
                 data-aos-once="true"
-              /> */}
-              <div
-                className="text-[72px] font-apple flex justify-center"
+              />
+              <MonogramVO
+                className="w-24 text-gold-light mt-2"
                 data-aos="fade-down"
                 data-aos-duration="3000"
                 data-aos-once="true"
-              >
-                <span>N</span>
-                <span className="-ml-[28px] mt-6">R</span>
-              </div>
+              />
               <div
                 className="mt-2 font-news text-2xl"
                 data-aos="fade-down"
                 data-aos-duration="3000"
                 data-aos-once="true"
               >
-                #haRINAnbahagia
+                20 . 09 . 2026
               </div>
+              <Divider
+                className="mt-4 w-56 text-gold"
+                data-aos="fade-down"
+                data-aos-duration="3000"
+                data-aos-once="true"
+              />
+              <p
+                className="mt-6 font-news text-sm"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-once="true"
+              >
+                Kami yang berbahagia,
+              </p>
+              <p
+                className="mt-2 px-6 font-news text-xs leading-5 text-cream/90"
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-once="true"
+              >
+                Keluarga Besar Bapak Paryanto & Ibu Dewi Asmara
+                <br />
+                Keluarga Besar Bapak Dr. Ir. H. Syafril Hadi, M.S. & Ibu Hj.
+                Meri Azrinelti, S.T., M.M.
+              </p>
             </div>
           </section>
         </div>
