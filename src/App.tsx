@@ -3,9 +3,7 @@ import FrameImg from "./assets/frame.png";
 
 import Backsound from "./assets/backsound.mp3";
 import Music from "./assets/music.png";
-import PhotoCouple from "./assets/photo-couple.png";
-import PhotoBride from "./assets/photo-bride.png";
-import PhotoGroom from "./assets/photo-groom.png";
+import { BrideCharacter, CoupleCharacter, GroomCharacter } from "./characters";
 
 import {
   AngsoDuo,
@@ -17,9 +15,7 @@ import {
   GoldCard,
   LaceEdge,
   MonogramVO,
-  PeonyBloom,
   PeonyCorner,
-  PeonySpray,
   PucukRebung,
   SongketPattern,
   SulurCorner,
@@ -449,14 +445,13 @@ const App = () => {
                 alt=""
                 className="w-52 relative z-10"
               />
-              <img
-                src={PhotoCouple}
-                alt="Vira & Ogi"
+              <CoupleCharacter
+                label="Vira & Ogi"
                 data-aos="fade-up"
                 data-aos-duration="2000"
                 data-aos-delay="2000"
                 data-aos-once="true"
-                className="absolute top-[40px] left-8 w-[148px] h-[280px] object-cover"
+                className="absolute top-[40px] left-8 w-[148px] h-[280px]"
               />
               <SulurCorner
                 className="absolute z-20 -top-5 -left-5 w-14 text-gold"
@@ -591,39 +586,11 @@ const App = () => {
               </p>
 
               <div
-                className="mt-16 relative border-2 border-gold w-52 h-72 rounded-t-full p-1.5 bg-ivory"
+                className="mt-16 relative w-64"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
-                <img
-                  src={PhotoBride}
-                  alt="Dean Savira"
-                  className="w-full h-full rounded-t-full object-cover"
-                />
-                <div
-                  className="absolute -top-8 inset-x-0 flex justify-center"
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="1000"
-                >
-                  <PeonySpray className="w-32" />
-                </div>
-                <div
-                  className="absolute -left-9 -bottom-4 w-20"
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="1000"
-                >
-                  <PeonyBloom className="w-full rotate-12" />
-                </div>
-                <div
-                  className="absolute -right-9 -bottom-4 w-20"
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="1000"
-                >
-                  <PeonyBloom className="w-full -rotate-12" />
-                </div>
+                <BrideCharacter className="w-full" label="Dean Savira" />
               </div>
               <div className="mt-12">
                 <h1
@@ -652,39 +619,11 @@ const App = () => {
               </div>
 
               <div
-                className="relative border-2 border-gold w-52 h-72 rounded-t-full p-1.5 bg-ivory"
+                className="relative w-64"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
-                <img
-                  src={PhotoGroom}
-                  alt="Bogita Mersa Putra"
-                  className="w-full h-full rounded-t-full object-cover"
-                />
-                <div
-                  className="absolute -top-8 inset-x-0 flex justify-center"
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="1000"
-                >
-                  <PeonySpray className="w-32" />
-                </div>
-                <div
-                  className="absolute -left-9 -bottom-4 w-20"
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="1000"
-                >
-                  <PeonyBloom className="w-full rotate-12" />
-                </div>
-                <div
-                  className="absolute -right-9 -bottom-4 w-20"
-                  data-aos="zoom-in"
-                  data-aos-duration="2000"
-                  data-aos-delay="1000"
-                >
-                  <PeonyBloom className="w-full -rotate-12" />
-                </div>
+                <GroomCharacter className="w-full" label="Bogita Mersa Putra" />
               </div>
               <div className="mt-12">
                 <h1
@@ -699,8 +638,8 @@ const App = () => {
                   data-aos="fade-up"
                   data-aos-duration="2000"
                 >
-                  Putra Ketiga dari Bapak Dr. Ir. H. Syafril Hadi, M.S. <br />
-                  dan <br /> Ibu Hj. Meri Azrinelti, S.T., M.M.
+                  Putra Ketiga dari Bapak Syafril Hadi <br /> dan <br /> Ibu
+                  Meri Azrinelti
                 </p>
               </div>
             </div>
@@ -1079,8 +1018,7 @@ const App = () => {
               >
                 Keluarga Besar Bapak Paryanto & Ibu Dewi Asmara
                 <br />
-                Keluarga Besar Bapak Dr. Ir. H. Syafril Hadi, M.S. & Ibu Hj.
-                Meri Azrinelti, S.T., M.M.
+                Keluarga Besar Bapak Syafril Hadi & Ibu Meri Azrinelti
               </p>
             </div>
           </section>
