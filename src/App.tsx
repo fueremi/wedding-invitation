@@ -688,7 +688,7 @@ const App = () => {
                 className="border border-gold text-gold-light px-6 py-2 rounded-full text-xs font-lato mt-8"
                 data-aos="fade-up"
                 data-aos-duration="2000"
-                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Vira+%26+Ogi&dates=20260920T110000/20260920T150000&location=Kediaman+Mempelai+Wanita+%7C+Jl.+Pertamina+RT.+13+%28Depan+SMAN+2+Muaro+Jambi%29%2C+Sengeti%2C+Muaro+Jambi%2C+Jambi%2C+Indonesia&details=Merupakan+suatu+kehormatan+dan+kebahagiaan+bagi+kami+apabila+Bapak%2FIbu%2FSaudara%2Fi+berkenan+hadir+untuk+memberikan+do%27a+restu+%7C+Pernikahan+Vira+%26+Ogi+%7C+Minggu%2C+20+September+2026"
+                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Vira+%26+Ogi&dates=20260920T110000/20260920T150000&location=Kediaman+Mempelai+Wanita+%7C+Jl.+Pertamina+RT.+13+%28Depan+SMAN+2+Muaro+Jambi%29%2C+Sengeti%2C+Muaro+Jambi%2C+Jambi%2C+Indonesia&details=Merupakan+suatu+kehormatan+dan+kebahagiaan+bagi+kami+apabila+Bapak%2FIbu%2FSaudara%2Fi+berkenan+hadir+untuk+memberikan+do%27a+restu+%7C+Akad+Nikah+Vira+%26+Ogi+%7C+Minggu%2C+20+September+2026"
                 target="_blank"
                 rel="nofollow"
               >
@@ -739,7 +739,7 @@ const App = () => {
                 <div className="flex flex-col items-center text-cream">
                   <TampukManggis className="w-14" />
                   <p className="font-cinzel text-3xl text-center mt-4 text-gold-light">
-                    Resepsi
+                    Akad Nikah
                   </p>
                   <p className="font-news text-sm text-center mt-4">
                     Minggu, 20 September 2026
